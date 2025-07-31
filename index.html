@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rossetti Capital Research</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    /* Header styling */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #1e1e1e;
+      padding: 20px 32px;
+      color: white;
+      border-bottom: 3px solid #333;
+    }
+
+    .navbar-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-left img {
+      height: 20px;
+      margin-right: 12px;
+    }
+
+    .navbar-left .company-name {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .navbar-center {
+      display: flex;
+      gap: 24px;
+    }
+
+    .navbar-center a {
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      transition: color 0.2s;
+    }
+
+    .navbar-center a:hover {
+      color: #64b5f6;
+    }
+
+    .navbar-right {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .search-wrapper {
+      position: relative;
+    }
+
+    .search-wrapper input[type="text"] {
+      padding: 6px 36px 6px 32px;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      width: 280px;
+    }
+
+    .search-wrapper::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      background-image: url('search.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .navbar-right button {
+      background-color: #0078d4;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .navbar-right button:hover {
+      background-color: #005fa3;
+    }
+
+    .navbar-right .login-btn {
+      background-color: transparent;
+      color: white;
+      border: 1px solid white;
+      padding: 6px 12px;
+    }
+
+    .navbar-right .settings-icon {
+      width: 18px;
+      height: 18px;
+      background-image: url('settings.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+
+    main {
+      padding: 60px 32px;
+      text-align: center;
+    }
+
+    main h1 {
+      font-size: 36px;
+      color: #333;
+    }
+
+    main p {
+      font-size: 18px;
+      color: #555;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar-left">
+      <img src="RCRLogo.png" alt="RCR Logo" />
+      <div class="company-name">Rossetti Capital Research</div>
+    </div>
+    <nav class="navbar-center">
+      <a href="#">Home</a>
+      <a href="#">Sample Reports</a>
+      <a href="#">Portfolio Summary</a>
+      <a href="#">Screener</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="navbar-right">
+      <div class="search-wrapper">
+        <input type="text" placeholder="Search ticker or company" />
+      </div>
+      <button>Full Access</button>
+      <button class="login-btn">Log In</button>
+      <div class="settings-icon"></div>
+    </div>
+  </header>
+
+  <main>
+    <h1>Institutional-Grade Equity Research, Automated</h1>
+    <p>Real-time stock reports, benchmarked portfolio analysis, and powerful screening tools — built for retail investors and professionals alike.</p>
+  </main>
+</body>
+</html>
