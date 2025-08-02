@@ -10,7 +10,7 @@
       margin: 0;
       font-family: "Segoe UI", Tahoma, sans-serif;
       background-color: #f5f5f5;
-      padding-top: 120px;
+      padding-top: 120px; /* Space for fixed top-bar + navbar */
     }
 
     /* ===== BLUE TOP ANNOUNCEMENT BAR ===== */
@@ -37,7 +37,7 @@
       text-decoration: underline;
     }
 
-    /* ===== NAVBAR ===== */
+    /* ===== HEADER NAV ===== */
     .navbar {
       display: flex;
       align-items: center;
@@ -46,10 +46,15 @@
       padding: 18px 40px;
       color: white;
       position: fixed;
-      top: 38px;
+      top: 38px; /* Height of top-bar */
       left: 0;
       width: 100%;
       z-index: 999;
+    }
+    .navbar-left {
+      display: flex;
+      align-items: center;
+      margin-left: 55px;
     }
     .navbar-left img {
       height: 32px;
@@ -67,8 +72,12 @@
     .navbar-center a:hover {
       color: #64b5f6;
     }
-
-    /* Search Wrapper */
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-right: 55px;
+    }
     .search-wrapper {
       position: relative;
     }
@@ -91,8 +100,6 @@
       background-size: contain;
       background-repeat: no-repeat;
     }
-
-    /* Navbar buttons */
     .navbar-right button {
       background-color: #0374e7;
       color: white;
@@ -113,39 +120,21 @@
       padding: 6px 12px;
       font-weight: 600;
     }
-
-    /* Hamburger menu icon */
-    .hamburger {
-      display: none;
-      font-size: 24px;
+    .login-btn:hover {
+      background-color: white;
+      color: #1e1e1e;
+    }
+    .settings-icon {
+      width: 20px;
+      height: 20px;
+      background-image: url('settings.png');
+      background-size: contain;
+      background-repeat: no-repeat;
       cursor: pointer;
-      background: none;
-      border: none;
-      color: white;
+      opacity: 0.85;
     }
-
-    /* ===== MOBILE MENU ===== */
-    .mobile-menu {
-      display: none;
-      flex-direction: column;
-      background-color: #0d1d3d;
-      padding: 15px;
-    }
-    .mobile-menu a {
-      color: white;
-      text-decoration: none;
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
-    .mobile-search {
-      display: none;
-      margin-top: 10px;
-    }
-    .mobile-search input {
-      width: 100%;
-      padding: 8px;
-      border-radius: 4px;
-      border: none;
+    .settings-icon:hover {
+      opacity: 1;
     }
 
     /* ===== MAIN APP CONTAINER ===== */
@@ -159,6 +148,7 @@
       text-align: center;
       margin-top: -10px;
     }
+
     .main-container h1 {
       font-size: 42px;
       font-weight: 700;
@@ -166,6 +156,8 @@
       color: #222;
       padding: 0 40px;
     }
+
+    /* Benefits Section */
     .benefits {
       display: flex;
       flex-wrap: wrap;
@@ -188,12 +180,12 @@
       margin-right: 8px;
     }
 
-    /* Feature grid */
+    /* Feature Grid with margins */
     .feature-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 20px;
-      padding: 0 120px;
+      padding: 0 120px; /* Substantial side margins */
     }
     .feature-card {
       background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
@@ -206,8 +198,26 @@
     .feature-card:hover {
       transform: translateY(-4px);
     }
+    .feature-card h3 {
+      margin-top: 0;
+      color: #333;
+    }
+    .feature-card button {
+      margin-top: 15px;
+      background-color: #0374e7;
+      color: white;
+      border: none;
+      padding: 12px 40px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .feature-card button:hover {
+      background-color: #5b97d3;
+    }
 
-    /* Reports section */
+    /* ===== REPORTS PREVIEW SECTION ===== */
     .report-section {
       max-width: 1100px;
       margin: 70px auto 0 auto;
@@ -228,12 +238,18 @@
     }
     .report-preview img:nth-child(1) {
       transform: rotate(-6deg) translateX(-240px);
+      z-index: 1;
+    }
+    .report-preview img:nth-child(2) {
+      transform: rotate(0deg);
+      z-index: 2;
     }
     .report-preview img:nth-child(3) {
       transform: rotate(6deg) translateX(240px);
+      z-index: 1;
     }
 
-    /* Member perks */
+    /* ===== MEMBER PERKS ===== */
     .member-perks {
       max-width: 1100px;
       margin: 405px auto 40px auto;
@@ -241,35 +257,33 @@
       padding: 50px;
       border-radius: 8px;
       text-align: center;
+      position: relative;
+      z-index: 3;
+      box-shadow: none;
     }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      .navbar-center, .search-wrapper, .navbar-right {
-        display: none;
-      }
-      .hamburger {
-        display: block;
-      }
-      .feature-grid {
-        padding: 0 30px;
-      }
+    .perk-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 0 0;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 10px;
     }
-    @media (max-width: 480px) {
-      .feature-grid {
-        padding: 0 15px;
-      }
+    .perk-list li {
+      font-size: 16px;
+      color: #333;
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Bar -->
+  <!-- Blue Announcement Bar -->
   <div class="top-bar">
     SPECIAL OFFER: GET 1 MONTH OF <strong>RCR PRO</strong> FREE – <a href="#">SIGN UP TODAY »</a>
   </div>
 
-  <!-- Navbar -->
+  <!-- Main Navigation -->
   <header class="navbar">
     <div class="navbar-left">
       <img src="RCRLogo-v3.png" alt="RCR Logo" />
@@ -281,30 +295,15 @@
       <a href="#">Screener</a>
       <a href="#">Contact</a>
     </nav>
-    <div class="search-wrapper">
-      <input type="text" placeholder="Search ticker or company" />
-    </div>
     <div class="navbar-right">
+      <div class="search-wrapper">
+        <input type="text" placeholder="Search ticker or company" />
+      </div>
       <button>Full Access</button>
       <button class="login-btn">Log In</button>
+      <div class="settings-icon"></div>
     </div>
-    <button class="hamburger" onclick="toggleMenu()">☰</button>
   </header>
-
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#">Home</a>
-    <a href="#">Sample Reports</a>
-    <a href="#">Portfolio Summary</a>
-    <a href="#">Screener</a>
-    <a href="#">Contact</a>
-    <button onclick="toggleSearch()">🔍 Search</button>
-    <div class="mobile-search" id="mobileSearch">
-      <input type="text" placeholder="Search ticker or company" />
-    </div>
-    <button>Full Access</button>
-    <button class="login-btn">Log In</button>
-  </div>
 
   <!-- Main Container -->
   <div class="main-container">
@@ -315,6 +314,7 @@
       <li>Market outlook — weekly guidance to stay ahead</li>
     </ul>
 
+    <!-- Feature Card Section -->
     <div class="feature-grid">
       <div class="feature-card">
         <h3>View Sample Reports</h3>
@@ -339,7 +339,7 @@
     </div>
   </div>
 
-  <!-- Reports Section -->
+  <!-- Reports Preview Section -->
   <div class="report-section">
     <div class="report-preview">
       <img src="PSRsample1.png" alt="Portfolio Summary Sample Report">
@@ -348,7 +348,7 @@
     </div>
   </div>
 
-  <!-- Member Perks -->
+  <!-- Member Perks Section -->
   <div class="member-perks">
     <h2>What You'll Get as a Member</h2>
     <ul class="perk-list">
@@ -358,17 +358,6 @@
       <li>Exclusive watchlist alerts</li>
     </ul>
   </div>
-
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById('mobileMenu');
-      menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-    }
-    function toggleSearch() {
-      const search = document.getElementById('mobileSearch');
-      search.style.display = (search.style.display === 'block') ? 'none' : 'block';
-    }
-  </script>
 
 </body>
 </html>
