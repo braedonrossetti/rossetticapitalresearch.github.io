@@ -7,70 +7,72 @@
   <style>
     body {
       margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f9f9f9;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background-color: #f5f5f5;
     }
 
-    /* Header styling */
+    /* ===== HEADER NAV ===== */
     .navbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color: #1e1e1e;
-      padding: 20px 32px;
+      background: linear-gradient(180deg, #1e1e1e 0%, #2a2a2a 100%);
+      padding: 14px 28px;
       color: white;
-      border-bottom: 3px solid #333;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     }
 
+    /* Left logo + title */
     .navbar-left {
       display: flex;
       align-items: center;
     }
-
     .navbar-left img {
-      height: 20px;
-      margin-right: 12px;
+      height: 28px;
+      margin-right: 10px;
     }
-
-    .navbar-left .company-name {
+    .company-name {
       font-size: 20px;
       font-weight: bold;
     }
 
+    /* Center navigation */
     .navbar-center {
       display: flex;
-      gap: 24px;
+      gap: 20px;
     }
-
     .navbar-center a {
       text-decoration: none;
       color: white;
-      font-size: 16px;
-      transition: color 0.2s;
+      font-size: 15px;
+      transition: color 0.2s ease-in-out;
     }
-
     .navbar-center a:hover {
       color: #64b5f6;
     }
 
+    /* Right side: search + buttons */
     .navbar-right {
       display: flex;
-      gap: 10px;
       align-items: center;
+      gap: 10px;
     }
 
     .search-wrapper {
       position: relative;
     }
-
     .search-wrapper input[type="text"] {
-      padding: 6px 36px 6px 32px;
+      padding: 6px 36px 6px 30px;
       border: none;
       border-radius: 4px;
       font-size: 14px;
-      width: 280px;
+      width: 240px;
+      transition: box-shadow 0.3s ease;
     }
-
+    .search-wrapper input[type="text"]:focus {
+      outline: none;
+      box-shadow: 0 0 4px rgba(0, 120, 212, 0.8);
+    }
     .search-wrapper::before {
       content: '';
       position: absolute;
@@ -85,53 +87,112 @@
     }
 
     .navbar-right button {
-      background-color: #0078d4;
+      background: linear-gradient(180deg, #0078d4 0%, #0064b1 100%);
       color: white;
       border: none;
       padding: 8px 14px;
       border-radius: 4px;
       cursor: pointer;
       font-size: 14px;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
     }
-
     .navbar-right button:hover {
-      background-color: #005fa3;
+      background: linear-gradient(180deg, #0088f0 0%, #006fca 100%);
+      box-shadow: 0 0 6px rgba(0, 120, 212, 0.6);
     }
 
-    .navbar-right .login-btn {
+    .login-btn {
       background-color: transparent;
       color: white;
       border: 1px solid white;
       padding: 6px 12px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .login-btn:hover {
+      background-color: white;
+      color: #1e1e1e;
     }
 
-    .navbar-right .settings-icon {
-      width: 18px;
-      height: 18px;
+    .settings-icon {
+      width: 20px;
+      height: 20px;
       background-image: url('settings.png');
       background-size: contain;
       background-repeat: no-repeat;
       cursor: pointer;
+      opacity: 0.85;
+      transition: opacity 0.3s ease;
+    }
+    .settings-icon:hover {
+      opacity: 1;
     }
 
-    main {
-      padding: 60px 32px;
+    /* ===== MAIN APP CONTAINER ===== */
+    .main-container {
+      max-width: 1100px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+
+    .main-container h1 {
       text-align: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #222;
+    }
+    .main-container p {
+      text-align: center;
+      color: #555;
+      font-size: 16px;
+      margin-bottom: 30px;
     }
 
-    main h1 {
-      font-size: 36px;
+    /* Feature grid like DraftWizard panels */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
+      padding: 20px;
+      border-radius: 6px;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .feature-card h3 {
+      margin-top: 0;
       color: #333;
     }
-
-    main p {
-      font-size: 18px;
-      color: #555;
-      margin-top: 12px;
+    .feature-card button {
+      margin-top: 15px;
+      background: linear-gradient(180deg, #0078d4 0%, #0064b1 100%);
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
     }
+    .feature-card button:hover {
+      background: linear-gradient(180deg, #0088f0 0%, #006fca 100%);
+      box-shadow: 0 0 6px rgba(0, 120, 212, 0.6);
+    }
+
   </style>
 </head>
 <body>
+
+  <!-- ===== HEADER NAVIGATION ===== -->
   <header class="navbar">
     <div class="navbar-left">
       <img src="RCRLogo.png" alt="RCR Logo" />
@@ -154,9 +215,36 @@
     </div>
   </header>
 
-  <main>
+  <!-- ===== MAIN CONTENT AREA ===== -->
+  <div class="main-container">
     <h1>Institutional-Grade Equity Research, Automated</h1>
     <p>Real-time stock reports, benchmarked portfolio analysis, and powerful screening tools — built for retail investors and professionals alike.</p>
-  </main>
+
+    <!-- Feature grid like DraftWizard panels -->
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>View Sample Reports</h3>
+        <p>Explore a live example of our in-depth RCR stock analysis report.</p>
+        <button>View Reports</button>
+      </div>
+      <div class="feature-card">
+        <h3>Portfolio Summary</h3>
+        <p>Analyze your portfolio’s performance against benchmarks instantly.</p>
+        <button>View Summary</button>
+      </div>
+      <div class="feature-card">
+        <h3>Market Outlook</h3>
+        <p>Weekly macro analysis, top stock picks, and sector rankings.</p>
+        <button>See Outlook</button>
+      </div>
+      <div class="feature-card">
+        <h3>Stock Screener</h3>
+        <p>Find your next trade with our advanced RCR fundamental screener.</p>
+        <button>Open Screener</button>
+      </div>
+    </div>
+
+  </div>
+
 </body>
 </html>
