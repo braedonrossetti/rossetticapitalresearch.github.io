@@ -22,7 +22,6 @@
       font-size: 14px;
       font-weight: 600;
       letter-spacing: 0.3px;
-
       position: fixed;
       top: 0;
       left: 0;
@@ -46,7 +45,6 @@
       background-color: #0d1d3dff;
       padding: 18px 40px;
       color: white;
-
       position: fixed;
       top: 38px; /* Height of top-bar */
       left: 0;
@@ -141,46 +139,40 @@
 
     /* ===== MAIN APP CONTAINER ===== */
     .main-container {
-      width: 100%;               /* Fill full width */
-      margin: 0;                 /* No centering margin */
-      background-color: white; /* No box background */
-      padding: 40px 0;        /* Even padding on sides */
-      border-radius: 0;          /* No rounded corners */
-      box-shadow: none;          /* Remove drop shadow */
+      width: 100%;
+      margin: 0;
+      background-color: white;
+      padding: 40px 0;
+      border-radius: 0;
+      box-shadow: none;
       text-align: center;
-      margin-top: -10px;         /* Pull closer to navbar */
+      margin-top: -10px;
     }
 
-    .main-container-inner {
-      max-width:1100px;
-      margin: 0 auto;
-      padding: 0 40px;
-    }  
-
-    .main-container-inner h1 {
+    .main-container h1 {
       font-size: 42px;
       font-weight: 700;
       margin-bottom: 15px;
       color: #222;
+      padding: 0 40px;
     }
 
+    /* Benefits Section */
     .benefits {
       display: flex;
-      flex-wrap: wrap;           /* Allow wrapping for small screens */
-      justify-content: center;   /* Keep centered */
-      gap: 20px;                  /* Space between items */
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
       list-style: none;
-      padding: 0;
+      padding: 0 40px;
       margin: 0 auto 30px auto;
       max-width: 1200px;
     }
-
     .benefits li {
       font-size: 15px;
       color: #333;
       white-space: nowrap;
     }
-
     .benefits li::before {
       content: "✔";
       color: #0374e7;
@@ -188,12 +180,12 @@
       margin-right: 8px;
     }
 
-
-    /* Feature grid */
+    /* Feature Grid with margins */
     .feature-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 20px;
+      padding: 0 120px; /* Substantial side margins */
     }
     .feature-card {
       background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
@@ -369,12 +361,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
