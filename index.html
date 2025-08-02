@@ -165,9 +165,47 @@
       margin-bottom: 30px;
     }
 
+    /* Feature grid */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
+      padding: 20px;
+      border-radius: 6px;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .feature-card h3 {
+      margin-top: 0;
+      color: #333;
+    }
+    .feature-card button {
+      margin-top: 15px;
+      background: linear-gradient(180deg, #0078d4 0%, #0064b1 100%);
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .feature-card button:hover {
+      background: linear-gradient(180deg, #0088f0 0%, #006fca 100%);
+      box-shadow: 0 0 6px rgba(0, 120, 212, 0.6);
+    }
+
     /* ===== STACKED REPORTS PREVIEW ===== */
     .report-preview {
-      margin-top: 40px;
+      margin-top: 50px;
       display: flex;
       justify-content: center;
       gap: 20px;
@@ -224,6 +262,30 @@
   <div class="main-container">
     <h1>Institutional-Grade Equity Research, Automated</h1>
     <p>Real-time stock reports, benchmarked portfolio analysis, and powerful screening tools — built for retail investors and professionals alike.</p>
+
+    <!-- Feature Card Section -->
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>View Sample Reports</h3>
+        <p>Explore a live example of our in-depth RCR stock analysis report.</p>
+        <button>View Reports</button>
+      </div>
+      <div class="feature-card">
+        <h3>Portfolio Summary</h3>
+        <p>Analyze your portfolio’s performance against benchmarks instantly.</p>
+        <button>View Summary</button>
+      </div>
+      <div class="feature-card">
+        <h3>Market Outlook</h3>
+        <p>Weekly macro analysis, top stock picks, and sector rankings.</p>
+        <button>See Outlook</button>
+      </div>
+      <div class="feature-card">
+        <h3>Stock Screener</h3>
+        <p>Find your next trade with our advanced RCR fundamental screener.</p>
+        <button>Open Screener</button>
+      </div>
+    </div>
 
     <!-- Stacked Report Preview -->
     <div class="report-preview">
