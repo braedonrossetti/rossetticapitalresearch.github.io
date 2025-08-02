@@ -196,43 +196,10 @@
       background-color: #5b97d3;
     }
 
-    /* ===== MEMBER PERKS SECTION ===== */
-    .member-perks {
-      max-width: 1100px;
-      margin: 40px auto;
-      background-color: white;
-      padding: 25px;
-      border-radius: 8px;
-      text-align: center;
-    }
-    .member-perks h2 {
-      margin-bottom: 20px;
-      color: #222;
-    }
-    .perk-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 10px;
-      text-align: left;
-    }
-    .perk-list li {
-      font-size: 15px;
-      color: #333;
-    }
-    .perk-list li::before {
-      content: "✔";
-      color: #0374e7;
-      font-weight: bold;
-      margin-right: 8px;
-    }
-
-    /* ===== REPORTS PREVIEW SECTION ===== */
+    /* ===== REPORTS PREVIEW SECTION (STATIC) ===== */
     .report-section {
       max-width: 1100px;
-      margin: 70px auto;
+      margin: 70px auto 0 auto;
       text-align: center;
     }
     .report-preview {
@@ -260,9 +227,36 @@
       transform: rotate(6deg) translateX(240px);
       z-index: 1;
     }
+
+    /* ===== MEMBER PERKS ===== */
+    .member-perks {
+      max-width: 1100px;
+      margin: -70px auto 40px auto; /* negative margin to overlap bottom of reports */
+      background-color: white;
+      padding: 25px;
+      border-radius: 8px;
+      text-align: center;
+      position: relative;
+      z-index: 3;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .perk-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 0 0;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .perk-list li {
+      font-size: 16px;
+      color: #333;
+    }
   </style>
 </head>
 <body>
+
 
   <!-- Blue Announcement Bar -->
   <div class="top-bar">
@@ -325,6 +319,15 @@
     </div>
   </div>
 
+  <!-- Reports Preview Section -->
+  <div class="report-section">
+    <div class="report-preview">
+      <img src="PSRsample1.png" alt="Portfolio Summary Sample Report">
+      <img src="SRsample1.png" alt="Stock Report Sample">
+      <img src="WSRsample1.png" alt="Weekly Summary Report">
+    </div>
+  </div>
+
   <!-- Member Perks Section -->
   <div class="member-perks">
     <h2>What You'll Get as a Member</h2>
@@ -336,14 +339,6 @@
     </ul>
   </div>
 
-  <!-- Reports Preview Section -->
-  <div class="report-section">
-    <div class="report-preview">
-      <img src="PSRsample1.png" alt="Portfolio Summary Sample Report">
-      <img src="SRsample1.png" alt="Stock Report Sample">
-      <img src="WSRsample1.png" alt="Weekly Summary Report">
-    </div>
-  </div>
-
 </body>
 </html>
+
