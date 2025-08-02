@@ -18,13 +18,13 @@
       text-align: center;
       padding: 10px 0;
       font-size: 14px;
-      font-weight: 600; /* slightly bolder */
+      font-weight: 600;
       letter-spacing: 0.3px;
     }
     .top-bar a {
       color: #ffd700;
       text-decoration: none;
-      font-weight: 600; /* slightly bolder */
+      font-weight: 600;
     }
     .top-bar a:hover {
       text-decoration: underline;
@@ -38,12 +38,11 @@
       background-color: #0d1d3dff;
       padding: 18px 40px;
       color: white;
-      box-shadow: none; /* remove shadow */
     }
     .navbar-left {
       display: flex;
       align-items: center;
-      margin-left: 55px; /* Nudge logo more right */
+      margin-left: 55px;
     }
     .navbar-left img {
       height: 32px;
@@ -65,7 +64,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-right: 55px; /* Nudge search/buttons more left */
+      margin-right: 55px;
     }
     .search-wrapper {
       position: relative;
@@ -76,11 +75,6 @@
       border-radius: 4px;
       font-size: 14px;
       width: 240px;
-      transition: box-shadow 0.3s ease;
-    }
-    .search-wrapper input[type="text"]:focus {
-      outline: none;
-      box-shadow: 0 0 4px rgba(0, 120, 212, 0.8);
     }
     .search-wrapper::before {
       content: '';
@@ -102,8 +96,7 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 14px;
-      font-weight: 600; /* slightly bolder */
-      transition: background 0.3s ease;
+      font-weight: 600;
     }
     .navbar-right button:hover {
       background-color: #5b97d3;
@@ -113,8 +106,7 @@
       color: white;
       border: 1px solid white;
       padding: 6px 12px;
-      font-weight: 600; /* slightly bolder */
-      transition: background 0.3s ease, color 0.3s ease;
+      font-weight: 600;
     }
     .login-btn:hover {
       background-color: white;
@@ -128,7 +120,6 @@
       background-repeat: no-repeat;
       cursor: pointer;
       opacity: 0.85;
-      transition: opacity 0.3s ease;
     }
     .settings-icon:hover {
       opacity: 1;
@@ -141,19 +132,32 @@
       background-color: white;
       padding: 30px;
       border-radius: 8px;
-      box-shadow: none; /* remove shadow */
       text-align: center;
     }
     .main-container h1 {
       font-size: 42px;
       font-weight: 700;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       color: #222;
     }
-    .main-container p {
-      color: #555;
-      font-size: 16px;
-      margin-bottom: 30px;
+    .benefits {
+      list-style: none;
+      padding: 0;
+      margin: 0 auto 30px auto;
+      max-width: 600px;
+      display: grid;
+      gap: 8px;
+      text-align: left;
+    }
+    .benefits li {
+      font-size: 15px;
+      color: #333;
+    }
+    .benefits li::before {
+      content: "✔";
+      color: #0374e7;
+      font-weight: bold;
+      margin-right: 8px;
     }
 
     /* Feature grid */
@@ -167,12 +171,11 @@
       padding: 20px;
       border-radius: 6px;
       text-align: center;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1); /* keep shadow */
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      transition: transform 0.25s ease;
     }
     .feature-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
     .feature-card h3 {
       margin-top: 0;
@@ -187,14 +190,46 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 16px;
-      font-weight: 600; /* slightly bolder */
-      transition: background 0.3s ease;
+      font-weight: 600;
     }
     .feature-card button:hover {
       background-color: #5b97d3;
     }
 
-    /* ===== REPORTS PREVIEW SECTION (STATIC) ===== */
+    /* ===== MEMBER PERKS SECTION ===== */
+    .member-perks {
+      max-width: 1100px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 25px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .member-perks h2 {
+      margin-bottom: 20px;
+      color: #222;
+    }
+    .perk-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 10px;
+      text-align: left;
+    }
+    .perk-list li {
+      font-size: 15px;
+      color: #333;
+    }
+    .perk-list li::before {
+      content: "✔";
+      color: #0374e7;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    /* ===== REPORTS PREVIEW SECTION ===== */
     .report-section {
       max-width: 1100px;
       margin: 70px auto;
@@ -209,9 +244,9 @@
     .report-preview img {
       width: 420px;
       position: absolute;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.25); /* keep shadow */
+      box-shadow: 0 4px 8px rgba(0,0,0,0.25);
       border-radius: 6px;
-      pointer-events: none; /* Prevent hover effects */
+      pointer-events: none;
     }
     .report-preview img:nth-child(1) {
       transform: rotate(-6deg) translateX(-240px);
@@ -259,7 +294,11 @@
   <!-- Main Container -->
   <div class="main-container">
     <h1>Institutional-Grade Equity Research, Automated</h1>
-    <p>Real-time stock reports, benchmarked portfolio analysis, and powerful screening tools — built for retail investors and professionals alike.</p>
+    <ul class="benefits">
+      <li>Instant research — full equity reports in seconds</li>
+      <li>Actionable insights — clear buy/sell recommendations</li>
+      <li>Market outlook — weekly guidance to stay ahead</li>
+    </ul>
 
     <!-- Feature Card Section -->
     <div class="feature-grid">
@@ -286,7 +325,18 @@
     </div>
   </div>
 
-  <!-- Reports Preview Section (STATIC) -->
+  <!-- Member Perks Section -->
+  <div class="member-perks">
+    <h2>What You'll Get as a Member</h2>
+    <ul class="perk-list">
+      <li>Access to 3,500+ stock reports</li>
+      <li>Weekly market outlook & top picks</li>
+      <li>Portfolio performance tracking</li>
+      <li>Exclusive watchlist alerts</li>
+    </ul>
+  </div>
+
+  <!-- Reports Preview Section -->
   <div class="report-section">
     <div class="report-preview">
       <img src="PSRsample1.png" alt="Portfolio Summary Sample Report">
@@ -297,12 +347,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
