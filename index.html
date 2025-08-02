@@ -284,14 +284,19 @@
 
     /* ==== FOOTER STYLES ==== */
     .site-footer {
-      background-color: #ffffff;
+      background-color: white;
       padding: 40px 20px;
       text-align: center;
       font-family: Arial, sans-serif;
       border-top: 1px solid #ddd;
-      max-width: 100%
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .site-footer img {
+      max-width: 100%;
       height: auto;
-      display: inline-block;
+      display: block;
+      margin: 0 auto;
     }
     .footer-branding {
       display: flex;
@@ -300,13 +305,13 @@
       gap: 10px;
     }
     .footer-logo {
-      height: 60px
+      height: 120px
     }
     .footer-wordmark {
       height: 40px;
     }
     .footer-social {
-      margin: 20px 0;
+      margin: 15px 0;
     }
     .footer-social a {
       display: inline-block;
@@ -314,7 +319,7 @@
       transition: transform 0.2s ease, opacity 0.2s ease;
     }
     .footer-social img {
-      height: 30px;
+      height: 28px;
       width: auto;
     }
     .footer-social a:hover {
@@ -480,6 +485,7 @@
   
 </body>
 </html>
+
 
 
 
