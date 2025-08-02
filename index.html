@@ -280,6 +280,69 @@
       font-size: 16px;
       color: #333;
     }
+
+    /* ==== FOOTER STYLES ==== */
+    .site-footer {
+      background-color: #ffffff;
+      padding: 40px 20px;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      border-top: 1px solid #ddd;
+    }
+    .footer-branding {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-logo {
+      height: 60px
+    }
+    .footer-wordmark {
+      height: 40px;
+    }
+    .footer-social {
+      margin: 20px 0;
+    }
+    .footer-social a {
+      display: inline-block;
+      margin: 0 8px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .footer-social img {
+      height: 30px;
+      width: auto;
+    }
+    .footer-social a:hover {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+    .footer-links {
+      margin: 15px 0;
+    }
+    .footer-links a {
+      margin: 0 12px;
+      color: #0077cc;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+    .footer-copy {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #555;
+    }
+    .footer-disclaimer {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #777;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.4;
+    }
   </style>
 </head>
 <body>
@@ -367,8 +430,53 @@
     </div>
   </div>
 
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <!-- Logo + Wordmark -->
+    <div class="footer-branding">
+      <img src="RCRLogoTransparent.png" alt="RCR Logo" class="footer-logo">
+      <img src="RCRwordmark.png" alt="Rossetti Capital Research" class="footer-wordmark">
+    </div>
+
+    <!-- Social Media Icons -->
+    <div class="footer-social">
+      <a href="https://instagram.com/yourhandle" target="_blank">
+        <img src="insta.png" alt="Instagram">
+      </a>
+      <a href="https://x.com/yourhandle" target="_blank">
+        <img src="twitter.png" alt="X (Twitter)">
+      </a>
+      <a href="https://tiktok.com/@yourhandle" target="_blank">
+        <img src="tiktok.png" alt="TikTok">
+      </a>
+      <a href="https://linkedin.com/company/yourcompany" target="_blank">
+        <img src="linked.png" alt="LinkedIn">
+      </a>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="footer-links">
+      <a href="/privacy-policy.html">Privacy Policy</a>
+      <a href="/terms-of-use.html">Terms of Use</a>
+      <a href="/company.html">Company</a>
+      <a href="/help.html">Help</a>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-copy">
+      © 2025 Rossetti Capital Research. All rights reserved.
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="footer-disclaimer">
+      Disclaimer: The information provided by Rossetti Capital Research is for educational and informational purposes only and should not be construed as financial, investment, or other professional advice. We do not make recommendations to buy or sell securities. Past performance is not indicative of future results.
+    </div>
+  </footer>
+
+  
 </body>
 </html>
+
 
 
 
