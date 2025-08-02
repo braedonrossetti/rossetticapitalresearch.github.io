@@ -137,6 +137,34 @@
     .settings-icon:hover {
       opacity: 1;
     }
+    .navbar-right .nav-btn {
+      display: inline-block;
+      background-color: #0374e7;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .navbar-right .nav-btn:hover {
+      background-color: #5b97d3;
+    }
+    .navbar-right .login-btn {
+      background-color: transparent;
+      color: white;
+      border: 1px solid white;
+      padding: 6px 12px;
+      font-weight: 600;
+    }
+    .navbar-right .login-btn:hover {
+      background-color: white;
+      color: #1e1e1e;
+    }
+
     /* ==== FOOTER STYLES ==== */
     .site-footer {
       background-color: white;
@@ -220,19 +248,19 @@
       <img src="RCRLogo-v3.png" alt="RCR Logo" />
     </div>
     <nav class="navbar-center">
-      <a href="index.html" class="home-btn">Home</a>
-      <a href="#">Sample Reports</a>
-      <a href="#">Portfolio Summary</a>
-      <a href="#">Screener</a>
+      <a href="index.html" class=”home-btn”>Home</a>
+      <a href="samplereports.html" class=”samplereports-btn”>Sample Reports</a>
+      <a href="portfoliosummary.html" class=”portfoliosummary-btn”>Portfolio Summary</a>
+      <a href="screener.html" class=”screener-btn”>Screener</a>
       <a href="contact.html" class="contact-btn">Contact</a>
     </nav>
     <div class="navbar-right">
       <div class="search-wrapper">
         <input type="text" placeholder="Search ticker or company" />
       </div>
-      <button>Full Access</button>
-      <button class="login-btn">Log In</button>
-      <div class="settings-icon"></div>
+      <a href=”fullaccess.html” class=”nav-btn full-access-btn”>Full Access</a>
+      <a href=”login.html” class=”nav-btn login-btn”>Log In</a>
+      <a href=”settings.html” class=”settings-icon”<>/a>
     </div>
   </header>
   <!-- ===== FOOTER ===== -->
@@ -244,7 +272,7 @@
 
     <!-- Social Media Icons -->
     <div class="footer-social">
-      <a href="https://instagram.com/yourhandle" target="_blank">
+      <a href="https://instagram.com/rossetticapital" target="_blank">
         <img src="insta.png" alt="Instagram">
       </a>
       <a href="https://x.com/yourhandle" target="_blank">
