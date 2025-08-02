@@ -34,7 +34,7 @@
     .navbar {
       display: flex;
       align-items: center;
-      justify-content: space-between; /* Centers header content */
+      justify-content: space-between;
       background: linear-gradient(180deg, #1e1e1e 0%, #2a2a2a 100%);
       padding: 18px 40px;
       color: white;
@@ -43,7 +43,7 @@
     .navbar-left {
       display: flex;
       align-items: center;
-      margin-right: 10px; /* Closer to center */
+      margin-left: 15px; /* Moves logo slightly right */
     }
     .navbar-left img {
       height: 32px;
@@ -51,7 +51,6 @@
     .navbar-center {
       display: flex;
       gap: 22px;
-      margin-right: 30px; /* Closer to center */
     }
     .navbar-center a {
       text-decoration: none;
@@ -66,7 +65,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-left: 10px; /* Closer to center */
+      margin-right: 15px; /* Moves search/buttons slightly left */
     }
     .search-wrapper {
       position: relative;
@@ -207,7 +206,7 @@
       margin-top: 40px;
     }
     .report-preview img {
-      width: 420px; /* Increased size */
+      width: 420px;
       position: absolute;
       box-shadow: 0 4px 8px rgba(0,0,0,0.25);
       border-radius: 6px;
@@ -224,6 +223,7 @@
       transform: rotate(6deg) translateX(240px);
       z-index: 1;
     }
+    /* Make reports completely static */
     .report-preview img:hover {
       transform: none;
       z-index: auto;
@@ -301,9 +301,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
