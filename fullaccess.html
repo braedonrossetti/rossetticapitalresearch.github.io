@@ -213,19 +213,32 @@
       left: 20px;
     }
     .plan-header {
-      font-weight: 800;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      font-weight: 700;
       font-size: 16px;
-      padding: 14px;
-      text-align: center;
-      color: black;
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
+      font-style: italic;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
     }
     .plan-card:not(.featured) .plan-header {
       background-color: #e5e5e5;
     }
     .plan-card.featured .plan-header {
       background-color: #ffcc00;
+    }
+    .plan-popular {
+      background: rgba(0, 0, 0, 0.1);
+      padding: 2px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #000;
+      border-radius: 4px;
+    }
+    .plan-name {
+      color: #000;
     }
     .plan-title {
       font-weight: 800;
@@ -433,7 +446,10 @@
 
     <!-- Core Plan -->
     <div class="plan-card">
-      <div class="plan-header">CORE</div>
+      <div class="plan-header">
+        <span class="plan-name">CORE</span>
+        <span class="plan-popular">POPULAR!</span>
+      </div>
 
       <div class="plan-price-wrap">
         <div class="plan-price">$16.99</div>
@@ -454,7 +470,10 @@
 
     <!-- Premium Plan -->
     <div class="plan-card featured">
-      <div class="plan-header">PREMIUM</div>
+      <div class="plan-header">
+        <span class="plan-name">CORE</span>
+        <span class="plan-popular">POPULAR!</span>
+      </div>
 
       <div class="plan-price-wrap">
         <div class="plan-price">$32.99</div>
@@ -476,7 +495,10 @@
 
     <!-- Institutional Plan -->
     <div class="plan-card">
-      <div class="plan-header">INSTITUTIONAL</div>
+      <div class="plan-header">
+        <span class="plan-name">INSTITUTIONAL</span>
+        <span class="plan-popular">POPULAR!</span>
+      </div>
 
       <div class="plan-price-wrap">
         <div class="plan-price">$419.99</div>
@@ -484,7 +506,7 @@
       </div>
       
       <div class="plan-subnote">per month, billed annually</div>
-      <div class="plan-divider"></div>
+      <div class="price-divider"></div>
       
       <ul class="plan-features">
         <li>Institutional-grade screener & backtesting</li>
