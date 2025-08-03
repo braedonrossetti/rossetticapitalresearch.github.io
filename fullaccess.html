@@ -436,6 +436,7 @@
     <div class="plan-card">
       <div class="plan-header">
         <span class="plan-name">CORE</span>
+        <span class="plan-popular">FREE TRIAL!</span>
       </div>
 
       <div class="plan-price-wrap">
@@ -586,17 +587,6 @@ document.addEventListener("DOMContentLoaded", function () {
       // Remove active state from all buttons
       billingButtons.forEach(b => b.classList.remove("active"));
       this.classList.add("active");
-
-      // Animate price updates
-      prices.forEach((priceElem, i) => {
-        if (priceElem.textContent !== pricingData[planType].prices[i]) {
-          priceElem.classList.add("fade-out");
-          setTimeout(() => {
-            priceElem.textContent = pricingData[planType].prices[i];
-            priceElem.classList.remove("fade-out");
-          }, 200);
-        }
-      });
 
       subnotes.forEach((noteElem, i) => {
         noteElem.textContent = pricingData[planType].subnotes[i];
