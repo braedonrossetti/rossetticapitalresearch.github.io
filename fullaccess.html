@@ -175,21 +175,20 @@
     .pricing-grid {
       display: flex;
       justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
+      gap: 0;
       margin-top: 20px;
     }
     .plan-card {
       background: white;
       color: black;
       border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-      width: 310px;
-      padding: 30px 25px;
+      width: 270px;
+      padding: 0 0 25px 0;
       text-align: left;
       position: relative;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       transition: transform 0.2s ease-in-out, box shadow 0.2s ease-in-out
     }
     .plan-card:hover {
@@ -197,8 +196,9 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.18);
     }
     .plan-card.featured {
-      border: 2px solid #ffcc00;
+      z-index: 2;
       transform: scale(1.05);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.2)
     }
     .plan-card.featured::before {
       content: "POPULAR!";
@@ -212,30 +212,53 @@
       top: -14px;
       left: 20px;
     }
+    .plan-header {
+      font-weight: 800;
+      font-size: 16px;
+      padding: 14px;
+      text-align: center;
+      color: black;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+    .plan-card:not(.featured) .plan-header {
+      background-color: #e5e5e5;
+    }
+    .plan-card.featured .plan-header {
+      background-color: #ffcc00;
+    }
     .plan-title {
       font-weight: 800;
       font-size: 16px;
       margin-bottom: 10px;
     }
     .plan-price {
-      font-size: 36px;
+      font-size: 32px;
       font-weight: 800;
-      margin-bottom: 6px;
-      transition: opacity 0.2s ease-in-out;
+      margin: 15px 0 5px 0;
+      text-align: center;
+    }
+    .original-price {
+      font-size: 16px;
+      color: #888;
+      text-decoration: line-through;
+      display: block;
+      margin-bottom: 5px;
+      text-align: center;
     }
     .fade-out {
       opacity: 0;
     }
-    }
     .plan-subnote {
       font-size: 14px;
       color: #666;
-      margin-bottom: 25px;
+      text-align: center;
+      margin-bottom: 15px;
     }
     .plan-features {
       list-style: none;
-      padding: 0;
-      margin: 0 0 25px 0;
+      padding: 0 20px;
+      margin: 0 0 20px 0;
     }
     .plan-features li {
       margin-bottom: 12px;
@@ -251,7 +274,7 @@
       font-size: 14px;
     }
     .plan-button {
-      margin-top: auto;
+      margin: 0 20px;
       background: #0374e7;
       color: white;
       padding: 14px;
@@ -405,7 +428,8 @@
 
     <!-- Pro Plan -->
     <div class="plan-card">
-      <div class="plan-title">Pro</div>
+      <div class="plan-header">Pro</div>
+      <span class="original-price">$41.99</span>
       <div class="plan-price">$16.99</div>
       <div class="plan-subnote">per month, billed annually</div>
       <ul class="plan-features">
@@ -419,7 +443,8 @@
 
     <!-- Premium Plan -->
     <div class="plan-card featured">
-      <div class="plan-title">Premium</div>
+      <div class="plan-header">Premium</div>
+      <span class="original-price">$81.99</span>
       <div class="plan-price">$32.99</div>
       <div class="plan-subnote">per month, billed annually</div>
       <ul class="plan-features">
@@ -434,7 +459,8 @@
 
     <!-- Institutional Plan -->
     <div class="plan-card">
-      <div class="plan-title">Institutional</div>
+      <div class="plan-header">Institutional</div>
+      <span class="original-price">$1,099.99</span>
       <div class="plan-price">$419.99</div>
       <div class="plan-subnote">per month, billed annually</div>
       <ul class="plan-features">
