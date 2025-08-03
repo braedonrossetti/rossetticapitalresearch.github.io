@@ -151,25 +151,46 @@
     }
     .billing-options {
       display: flex;
+      background-color: #0b1a38;
+      border-radius: 50px;
+      padding: 4px;
       justify-content: center;
       gap: 12px;
       margin-bottom: 40px;
     }
     .billing-options button {
-      background-color: #12254f;
+      background-color: transparent;
       border: none;
-      padding: 12px 26px;
+      padding: 10px 22px;
       color: white;
       font-weight: 600;
       font-size: 14px;
       border-radius: 50px;
       cursor: pointer;
     }
+    .billing-options-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .billing-label {
+      font-weight: 600;
+      color: white;
+      font-size: 16px;
+    }
     .billing-options button.active {
-      background-color: #0374e7;
+      background-color: #12254f;
     }
     .billing-options button:hover {
       background-color: #064fa3;
+    }
+    .billing-note {
+      font-weight: 600;
+      color: #ffcc00;
+      font-size: 16px;
     }
     .pricing-grid {
       display: flex;
@@ -423,10 +444,16 @@
   <p>Unlock institutional-grade equity research starting at just $16.99/month when billed annually.</p>
 
   <!-- Billing Option Buttons -->
-  <div class="billing-options">
-    <button class="active" data-plan="annual">Annual</button>
-    <button data-plan="semiannual">6 Months </button>
-    <button data-plan="monthly">Monthly</button>
+  <div class="billing-options-wrapper">
+    <span class="billing-label">Select billing option:</span>
+    
+    <div class="billing-options">
+      <button class="active" data-plan="annual">Annual</button>
+      <button data-plan="semiannual">6 Months </button>
+      <button data-plan="monthly">Monthly</button>
+    </div>
+
+    <span class="billing-note" id="billingNote">Over 60% off</span>
   </div>
 
   <!-- Pricing Plans -->
@@ -564,31 +591,26 @@ document.addEventListener("DOMContentLoaded", function () {
   const prices = document.querySelectorAll(".plan-card .plan-price");
   const subnotes = document.querySelectorAll(".plan-card .plan-subnote");
   const originalPrices = document.querySelectorAll(".plan-card .original-price");
+  const billingNote = document.getElementById("billingNote");
 
-  // Pricing table
   const pricingData = {
     annual: {
       prices: ["$16.99", "$32.99", "$419.99"],
       original: ["$41.99", "$81.99", "$1,099.99"],
-      subnotes: [
-        "per month, billed annually",
-        "per month, billed annually",
-        "per month, billed annually"
-      ]
+      subnotes: ["per month, billed annually", "per month, billed annually", "per month, billed annually"],
+      note: "Over 60% off"
     },
     semiannual: {
       prices: ["$27.99", "$54.99", "$699.99"],
       original: ["$41.99", "$81.99", "$1,099.99"],
-      subnotes: [
-        "per month, billed every 6 months",
-        "per month, billed every 6 months",
-        "per month, billed every 6 months"
-      ]
+      subnotes: ["per month, billed every 6 months", "per month, billed every 6 months", "per month, billed every 6 months"],
+      note: "Over 40% off"
     },
     monthly: {
       prices: ["$41.99", "$81.99", "$1,099.99"],
-      original: ["", "", ""], // No original price for monthly
-      subnotes: ["billed monthly", "billed monthly", "billed monthly"]
+      original: ["", "", ""],
+      subnotes: ["billed monthly", "billed monthly", "billed monthly"],
+      note: "Try it out!"
     }
   };
 
@@ -596,7 +618,7 @@ document.addEventListener("DOMContentLoaded", function () {
     btn.addEventListener("click", function () {
       const planType = this.dataset.plan;
 
-      // Remove active state from all buttons
+      // Active state
       billingButtons.forEach(b => b.classList.remove("active"));
       this.classList.add("active");
 
@@ -605,7 +627,7 @@ document.addEventListener("DOMContentLoaded", function () {
         priceElem.textContent = pricingData[planType].prices[i];
       });
 
-      // Update original prices & hide if monthly
+      // Update original prices
       originalPrices.forEach((origElem, i) => {
         if (planType === "monthly") {
           origElem.style.display = "none";
@@ -619,10 +641,14 @@ document.addEventListener("DOMContentLoaded", function () {
       subnotes.forEach((noteElem, i) => {
         noteElem.textContent = pricingData[planType].subnotes[i];
       });
+
+      // Update yellow note
+      billingNote.textContent = pricingData[planType].note;
     });
   });
 });
 </script>
+
 
 </body>
 </html>
