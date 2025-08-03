@@ -129,6 +129,158 @@
     .navbar-right .nav-btn:hover {
       background-color: #5b97d3;
     }
+    /* ===== FULL ACCESS PAGE ===== */
+
+    /* Hero Section */
+    .fullaccess-hero {
+      background-color: #0d1d3d; /* navy to match navbar */
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .fullaccess-hero h1 {
+      font-size: 36px;
+      margin-bottom: 15px;
+    }
+
+    .fullaccess-hero p {
+      font-size: 18px;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* Pricing Section */
+    .pricing-section {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .plan-card {
+      background: white;
+      border-radius: 8px;
+      padding: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    .plan-card h2 {
+      margin-top: 0;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .plan-price {
+      font-size: 26px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .plan-price span {
+      font-size: 14px;
+      color: #777;
+    }
+
+    .plan-subnote {
+      color: #777;
+      font-size: 14px;
+    }
+
+    .plan-features {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+      margin-top: 20px;
+      font-size: 15px;
+    }
+
+    .plan-features li {
+      margin-bottom: 8px;
+    }
+
+    .plan-features li::before {
+      content: "✔ ";
+      color: #0374e7;
+      font-weight: bold;
+    }
+
+    .plan-features li.disabled::before {
+      content: "✖ ";
+      color: #b0b0b0;
+    }
+
+    /* Highlight for Pro Plan */
+    .plan-pro {
+      border-top: 4px solid #0374e7;
+    }
+
+    /* Buttons */
+    .plan-card .nav-btn {
+      display: inline-block;
+      margin-top: 20px;
+      background-color: #0374e7;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 4px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .plan-card .nav-btn:hover {
+      background-color: #5b97d3;
+    }
+
+    /* Final CTA Banner */
+    .final-cta {
+      background-color: #0d1d3d;
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .final-cta h2 {
+      margin-bottom: 10px;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .final-cta p {
+      margin-bottom: 25px;
+      font-size: 16px;
+      color: #dce3f0;
+    }
+
+    .final-cta .nav-btn {
+      display: inline-block;
+      margin: 5px;
+      background-color: #0374e7;
+      color: white;
+      padding: 12px 22px;
+      border-radius: 4px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .final-cta .nav-btn:hover {
+      background-color: #5b97d3;
+    }
+
+    .final-cta .nav-btn.alt {
+      background-color: white;
+      color: #0d1d3d;
+    }
+
+    .final-cta .nav-btn.alt:hover {
+      background-color: #e6e6e6;
+    }
 
     /* ==== FOOTER STYLES ==== */
     .site-footer {
@@ -229,6 +381,86 @@
       </div>
     </header>
 
+    <!-- ===== FULL ACCESS PAGE CONTENT ===== -->
+
+    <!-- Hero Section -->
+    <section style="background-color:#0d1d3d; color:white; text-align:center; padding:60px 20px;">
+      <h1 style="font-size:36px; margin-bottom:15px;">Unlock the Full Power of RCR Pro</h1>
+      <p style="font-size:18px; max-width:700px; margin:0 auto;">
+        Choose the plan that fits your investing needs and gain access to institutional-grade tools, 
+        data, and research. Start your free trial today and invest smarter.
+      </p>
+    </section>
+
+    <!-- Pricing Table -->
+    <section style="max-width:1200px; margin:60px auto; padding:0 20px;">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px;">
+
+        <!-- Free Plan -->
+        <div style="background:white; border-radius:8px; padding:30px; box-shadow:0 2px 8px rgba(0,0,0,0.08); text-align:center;">
+          <h2>Free</h2>
+          <p style="font-size:26px; font-weight:bold;">$0</p>
+          <p style="color:#777;">Basic Stock Screener</p>
+          <ul style="list-style:none; padding:0; text-align:left; margin-top:20px; font-size:15px;">
+            <li>✔ Basic Stock Screener - 50+ metrics</li>
+            <li>✖ Portfolio Summary Report</li>
+            <li>✖ Stock Reports</li>
+            <li>✖ Weekly Summary Report</li>
+          </ul>
+          <a href="signup.html" class="nav-btn" style="display:inline-block; margin-top:20px;">Get Started</a>
+        </div>
+
+        <!-- Pro Plan -->
+        <div style="background:white; border-radius:8px; padding:30px; box-shadow:0 2px 8px rgba(0,0,0,0.08); text-align:center; border-top:4px solid #0374e7;">
+          <h2>Pro</h2>
+          <p style="font-size:26px; font-weight:bold;">$19.99/mo<br><span style="font-size:14px; color:#777;">or $199.99/yr</span></p>
+          <p style="color:#777;">1 Month Free Trial Eligible</p>
+          <ul style="list-style:none; padding:0; text-align:left; margin-top:20px; font-size:15px;">
+            <li>✔ Advanced Stock Screener - Fundamental grade & categorizations</li>
+            <li>✔ Portfolio Summary (current holdings)</li>
+            <li>✔ 10 Stock Reports/week</li>
+            <li>✖ Weekly Summary Report</li>
+          </ul>
+          <a href="signup.html" class="nav-btn" style="display:inline-block; margin-top:20px;">Start Free Trial</a>
+        </div>
+
+        <!-- Premium Plan -->
+        <div style="background:white; border-radius:8px; padding:30px; box-shadow:0 2px 8px rgba(0,0,0,0.08); text-align:center;">
+          <h2>Premium</h2>
+          <p style="font-size:26px; font-weight:bold;">$39.99/mo<br><span style="font-size:14px; color:#777;">or $399.99/yr</span></p>
+          <ul style="list-style:none; padding:0; text-align:left; margin-top:20px; font-size:15px;">
+            <li>✔ Full Stock Screener - All 11 quantitative grades</li>
+            <li>✔ Portfolio Summary (historical transactions - 1/mo)</li>
+            <li>✔ 100 Stock Reports/week</li>
+            <li>✔ Weekly Summary Report</li>
+          </ul>
+          <a href="signup.html" class="nav-btn" style="display:inline-block; margin-top:20px;">Subscribe</a>
+        </div>
+
+        <!-- Institutional Plan -->
+        <div style="background:white; border-radius:8px; padding:30px; box-shadow:0 2px 8px rgba(0,0,0,0.08); text-align:center;">
+          <h2>Institutional</h2>
+          <p style="font-size:26px; font-weight:bold;">$499.99/mo<br><span style="font-size:14px; color:#777;">or $4,999.99/yr</span></p>
+          <p style="color:#777;">First 3 Months: $299.99/mo</p>
+          <ul style="list-style:none; padding:0; text-align:left; margin-top:20px; font-size:15px;">
+            <li>✔ Institutional Screener - Full historical grades for backtesting</li>
+            <li>✔ Unlimited Portfolio Summary Reports</li>
+            <li>✔ Unlimited Stock Reports</li>
+            <li>✔ Weekly Summary Report</li>
+          </ul>
+          <a href="signup.html" class="nav-btn" style="display:inline-block; margin-top:20px;">Contact Sales</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Final CTA Banner -->
+    <section style="background-color:#0d1d3d; color:white; text-align:center; padding:50px 20px;">
+      <h2 style="margin-bottom:10px;">Ready to Access Institutional-Grade Research?</h2>
+      <p style="margin-bottom:25px;">Join RCR Pro today and start making data-driven investment decisions.</p>
+      <a href="signup.html" class="nav-btn" style="margin:5px;">Start Free Trial</a>
+      <a href="samplereports.html" class="nav-btn" style="background-color:white; color:#0d1d3d; font-weight:600; margin:5px;">View Sample Reports</a>
+    </section>
 
   <!-- ===== FOOTER ===== -->
   <footer class="site-footer">
@@ -275,5 +507,3 @@
   
 </body>
 </html>
-
-
