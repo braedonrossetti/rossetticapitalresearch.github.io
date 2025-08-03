@@ -563,31 +563,59 @@ document.addEventListener("DOMContentLoaded", function () {
   const billingButtons = document.querySelectorAll(".billing-options button");
   const prices = document.querySelectorAll(".plan-card .plan-price");
   const subnotes = document.querySelectorAll(".plan-card .plan-subnote");
+  const originalPrices = document.querySelectorAll(".plan-card .original-price");
 
   // Pricing table
   const pricingData = {
     annual: {
       prices: ["$16.99", "$32.99", "$419.99"],
-      subnotes: ["per month, billed annually", "per month, billed annually", "per month, billed annually"]
+      original: ["$41.99", "$81.99", "$1,099.99"],
+      subnotes: [
+        "per month, billed annually",
+        "per month, billed annually",
+        "per month, billed annually"
+      ]
     },
     semiannual: {
       prices: ["$27.99", "$54.99", "$699.99"],
-      subnotes: ["per month, billed every 6 months", "per month, billed every 6 months", "per month, billed every 6 months"]
+      original: ["$41.99", "$81.99", "$1,099.99"],
+      subnotes: [
+        "per month, billed every 6 months",
+        "per month, billed every 6 months",
+        "per month, billed every 6 months"
+      ]
     },
     monthly: {
-      prices: ["$41.99", "$81.99", "$1099.99"],
+      prices: ["$41.99", "$81.99", "$1,099.99"],
+      original: ["", "", ""], // No original price for monthly
       subnotes: ["billed monthly", "billed monthly", "billed monthly"]
     }
   };
 
   billingButtons.forEach(btn => {
     btn.addEventListener("click", function () {
-      const planType = this.dataset.plan; // read from data attribute like data-plan="annual"
+      const planType = this.dataset.plan;
 
       // Remove active state from all buttons
       billingButtons.forEach(b => b.classList.remove("active"));
       this.classList.add("active");
 
+      // Update prices
+      prices.forEach((priceElem, i) => {
+        priceElem.textContent = pricingData[planType].prices[i];
+      });
+
+      // Update original prices & hide if monthly
+      originalPrices.forEach((origElem, i) => {
+        if (planType === "monthly") {
+          origElem.style.display = "none";
+        } else {
+          origElem.textContent = pricingData[planType].original[i];
+          origElem.style.display = "inline";
+        }
+      });
+
+      // Update subnotes
       subnotes.forEach((noteElem, i) => {
         noteElem.textContent = pricingData[planType].subnotes[i];
       });
@@ -595,5 +623,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
+
 </body>
 </html>
