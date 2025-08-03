@@ -44,7 +44,7 @@
       align-items: center;
       justify-content: space-between;
       background-color: #0d1d3dff;
-      padding: 18px 40px;
+      padding: 17px 40px;
       color: white;
       position: fixed;
       top: 38px; /* Height of top-bar */
@@ -101,30 +101,6 @@
       background-size: contain;
       background-repeat: no-repeat;
     }
-    .navbar-right button {
-      background-color: #0374e7;
-      color: white;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 600;
-    }
-    .navbar-right button:hover {
-      background-color: #5b97d3;
-    }
-    .login-btn {
-      background-color: transparent;
-      color: white;
-      border: 1px solid white;
-      padding: 6px 12px;
-      font-weight: 600;
-    }
-    .login-btn:hover {
-      background-color: white;
-      color: #1e1e1e;
-    }
     .settings-icon {
       width: 20px;
       height: 20px;
@@ -136,6 +112,22 @@
     }
     .settings-icon:hover {
       opacity: 1;
+    }
+    .navbar-right .nav-btn {
+      display: inline-block;
+      background-color: #0374e7;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .navbar-right .nav-btn:hover {
+      background-color: #5b97d3;
     }
 
     /* ===== MAIN APP CONTAINER ===== */
@@ -365,25 +357,25 @@
 
   <!-- Main Navigation -->
   <header class="navbar">
-    <div class="navbar-left">
-      <img src="RCRLogo-v3.png" alt="RCR Logo" />
-    </div>
-    <nav class="navbar-center">
-      <a href="index.html" class="home-btn">Home</a>
-      <a href="#">Sample Reports</a>
-      <a href="#">Portfolio Summary</a>
-      <a href="#">Screener</a>
-      <a href="contact.html" class="contact-btn">Contact</a>
-    </nav>
-    <div class="navbar-right">
-      <div class="search-wrapper">
-        <input type="text" placeholder="Search ticker or company" />
+      <div class="navbar-left">
+        <img src="RCRLogo-v3.png" alt="RCR Logo" />
       </div>
-      <button>Full Access</button>
-      <button class="login-btn">Log In</button>
-      <div class="settings-icon"></div>
-    </div>
-  </header>
+      <nav class="navbar-center">
+        <a href="index.html" class="home-btn">Home</a>
+        <a href="samplereports.html" class="samplereports-btn">Sample Reports</a>
+        <a href="portfoliosummary.html" class="portfoliosummary-btn">Portfolio Summary</a>
+        <a href="screener.html" class="screener-btn">Screener</a>
+        <a href="contact.html" class="contact-btn">Contact</a>
+      </nav>
+      <div class="navbar-right">
+        <div class="search-wrapper">
+          <input type="text" placeholder="Search ticker or company" />
+        </div>
+        <a href="fullaccess.html" class="nav-btn">Full Access</a>
+        <a href="login.html" class="nav-btn">Log In</a>
+        <a href="settings.html" class="settings-icon"></a>
+      </div>
+    </header>
 
   <!-- Main Container -->
   <div class="main-container">
@@ -450,7 +442,7 @@
 
     <!-- Social Media Icons -->
     <div class="footer-social">
-      <a href="https://instagram.com/yourhandle" target="_blank">
+      <a href="https://instagram.com/rossetticapital" target="_blank">
         <img src="insta.png" alt="Instagram">
       </a>
       <a href="https://x.com/yourhandle" target="_blank">
@@ -466,10 +458,10 @@
 
     <!-- Navigation Links -->
     <div class="footer-links">
-      <a href="/privacy-policy.html">Privacy Policy</a>
-      <a href="/terms-of-use.html">Terms of Use</a>
-      <a href="/company.html">Company</a>
-      <a href="/help.html">Help</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-of-use.html">Terms of Use</a>
+      <a href="company.html">Company</a>
+      <a href="help.html">Help</a>
     </div>
 
     <!-- Copyright -->
@@ -486,3 +478,4 @@
   
 </body>
 </html>
+
