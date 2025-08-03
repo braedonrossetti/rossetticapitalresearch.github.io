@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <link rel="icon" href="favicon-v4.png" type="image/png">
@@ -129,157 +129,116 @@
     .navbar-right .nav-btn:hover {
       background-color: #5b97d3;
     }
-    /* ===== FULL ACCESS PAGE ===== */
 
-    /* Hero Section */
-    .fullaccess-hero {
-      background-color: #0d1d3d; /* navy to match navbar */
-      color: white;
-      text-align: center;
-      padding: 60px 20px;
-    }
-
-    .fullaccess-hero h1 {
-      font-size: 36px;
-      margin-bottom: 15px;
-    }
-
-    .fullaccess-hero p {
-      font-size: 18px;
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.5;
-    }
-
-    /* Pricing Section */
-    .pricing-section {
-      max-width: 1200px;
-      margin: 60px auto;
-      padding: 0 20px;
-    }
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-    }
-
-    .plan-card {
-      background: white;
-      border-radius: 8px;
-      padding: 30px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      text-align: center;
-    }
-
-    .plan-card h2 {
-      margin-top: 0;
-      font-size: 22px;
-      font-weight: 700;
-    }
-
-    .plan-price {
-      font-size: 26px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
-
-    .plan-price span {
-      font-size: 14px;
-      color: #777;
-    }
-
-    .plan-subnote {
-      color: #777;
-      font-size: 14px;
-    }
-
-    .plan-features {
-      list-style: none;
-      padding: 0;
-      text-align: left;
-      margin-top: 20px;
-      font-size: 15px;
-    }
-
-    .plan-features li {
-      margin-bottom: 8px;
-    }
-
-    .plan-features li::before {
-      content: "✔ ";
-      color: #0374e7;
-      font-weight: bold;
-    }
-
-    .plan-features li.disabled::before {
-      content: "✖ ";
-      color: #b0b0b0;
-    }
-
-    /* Highlight for Pro Plan */
-    .plan-pro {
-      border-top: 4px solid #0374e7;
-    }
-
-    /* Buttons */
-    .plan-card .nav-btn {
-      display: inline-block;
-      margin-top: 20px;
-      background-color: #0374e7;
-      color: white;
-      padding: 10px 18px;
-      border-radius: 4px;
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .plan-card .nav-btn:hover {
-      background-color: #5b97d3;
-    }
-
-    /* Final CTA Banner */
-    .final-cta {
+    /* ===== FULL ACCESS PRICING TABLE ===== */
+    .pricing-container {
       background-color: #0d1d3d;
       color: white;
       text-align: center;
       padding: 50px 20px;
     }
-
-    .final-cta h2 {
+    .pricing-container h1 {
+      font-size: 36px;
       margin-bottom: 10px;
-      font-size: 28px;
-      font-weight: 700;
     }
-
-    .final-cta p {
-      margin-bottom: 25px;
-      font-size: 16px;
-      color: #dce3f0;
+    .pricing-container p {
+      color: #b0c4de;
+      margin-bottom: 40px;
     }
-
-    .final-cta .nav-btn {
-      display: inline-block;
-      margin: 5px;
+    .billing-options {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+    .billing-options button {
+      background-color: #f1f1f1;
+      color: #333;
+      border: 1px solid #ccc;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.25s ease-in-out;
+    }
+    .billing-options button.active {
       background-color: #0374e7;
       color: white;
-      padding: 12px 22px;
-      border-radius: 4px;
+      border-color: #0374e7
       font-weight: 700;
+    }
+    .billing-options button:hover {
+      background-color: #e0e0e0;
+    }
+    .pricing-grid {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .plan-card {
+      background: white;
+      color: black;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 300px;
+      padding: 25px;
+      text-align: left;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .plan-card.featured {
+      border: 3px solid #ffcc00;
+      transform: scale(1.05);
+    }
+    .plan-title {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .plan-price {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .plan-subnote {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    .plan-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px 0;
+    }
+    .plan-features li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+    .plan-features li::before {
+      content: '✔';
+      color: #0374e7;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+    .plan-button {
+      margin-top: auto;
+      background: #0374e7;
+      color: white;
+      padding: 12px;
+      text-align: center;
+      border-radius: 6px;
+      font-weight: bold;
       text-decoration: none;
+      transition: background 0.2s ease-in-out;
     }
-
-    .final-cta .nav-btn:hover {
-      background-color: #5b97d3;
-    }
-
-    .final-cta .nav-btn.alt {
-      background-color: white;
-      color: #0d1d3d;
-    }
-
-    .final-cta .nav-btn.alt:hover {
-      background-color: #e6e6e6;
+    .plan-button:hover {
+      background: #025ec2;
     }
 
     /* ==== FOOTER STYLES ==== */
@@ -353,7 +312,7 @@
   </style>
 </head>
 <body>
-  
+
   <!-- Blue Announcement Bar -->
   <div class="top-bar">
     <strong>SPECIAL OFFER: GET 1 MONTH OF RCR PRO FREE</strong> – <a href="#">SIGN UP TODAY »</a>
@@ -361,106 +320,86 @@
 
   <!-- Main Navigation -->
   <header class="navbar">
-      <div class="navbar-left">
-        <img src="RCRLogo-v3.png" alt="RCR Logo" />
+    <div class="navbar-left">
+      <img src="RCRLogo-v3.png" alt="RCR Logo" />
+    </div>
+    <nav class="navbar-center">
+      <a href="index.html" class="home-btn">Home</a>
+      <a href="samplereports.html" class="samplereports-btn">Sample Reports</a>
+      <a href="portfoliosummary.html" class="portfoliosummary-btn">Portfolio Summary</a>
+      <a href="screener.html" class="screener-btn">Screener</a>
+      <a href="contact.html" class="contact-btn">Contact</a>
+    </nav>
+    <div class="navbar-right">
+      <div class="search-wrapper">
+        <input type="text" placeholder="Search ticker or company" />
       </div>
-      <nav class="navbar-center">
-        <a href="index.html" class="home-btn">Home</a>
-        <a href="samplereports.html" class="samplereports-btn">Sample Reports</a>
-        <a href="portfoliosummary.html" class="portfoliosummary-btn">Portfolio Summary</a>
-        <a href="screener.html" class="screener-btn">Screener</a>
-        <a href="contact.html" class="contact-btn">Contact</a>
-      </nav>
-      <div class="navbar-right">
-        <div class="search-wrapper">
-          <input type="text" placeholder="Search ticker or company" />
-        </div>
-        <a href="fullaccess.html" class="nav-btn">Full Access</a>
-        <a href="login.html" class="nav-btn">Log In</a>
-        <a href="settings.html" class="settings-icon"></a>
+      <a href="fullaccess.html" class="nav-btn">Full Access</a>
+      <a href="login.html" class="nav-btn">Log In</a>
+      <a href="settings.html" class="settings-icon"></a>
+    </div>
+  </header>
+
+  <!-- ===== FULL ACCESS SECTION ===== -->
+  <section class="pricing-container">
+    <h1>Get Full Access to RCR Pro</h1>
+    <p>Unlock institutional-grade equity research starting at just $16.99/month when billed annually.</p>
+
+    <!-- Billing Option Buttons -->
+    <div class="billing-options">
+      <button class="active">Annual <span style="font-weight:400;">Over 60% Off</span></button>
+      <button>6 Months <span style="font-weight:400;">Over 40% Off</span></button>
+      <button>Monthly</button>
+    </div>
+
+    <!-- Pricing Plans -->
+    <div class="pricing-grid">
+
+      <!-- Pro Plan -->
+      <div class="plan-card">
+        <div class="plan-title">Pro</div>
+        <div class="plan-price">$16.99</div>
+        <div class="plan-subnote">per month, billed annually</div>
+        <ul class="plan-features">
+          <li>Advanced Stock Screener</li>
+          <li>Fundamental grades & categorizations</li>
+          <li>Portfolio summary on current holdings</li>
+          <li>10 stock reports per week</li>
+        </ul>
+        <a href="#" class="plan-button">Upgrade</a>
       </div>
-    </header>
 
-    <!-- ===== FULL ACCESS PAGE CONTENT ===== -->
-
-    <!-- Hero Section -->
-    <section style="background-color:#0d1d3d; color:white; text-align:center; padding:60px 20px;">
-      <h1 style="font-size:36px; margin-bottom:15px;">Unlock the Full Power of RCR Pro</h1>
-      <p style="font-size:18px; max-width:700px; margin:0 auto;">
-        Choose the plan that fits your investing needs and gain access to institutional-grade tools, 
-        data, and research. Start your free trial today and invest smarter.
-      </p>
-    </section>
-
-    <!-- Pricing Table -->
-    <section style="max-width:1200px; margin:60px auto; padding:0 20px;">
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px;">
-
-        <!-- Free Plan -->
-        <div style="background:white; border-radius:8px; padding:30px; box-shadow:0 2px 8px rgba(0,0,0,0.08); text-align:center;">
-          <h2>Free</h2>
-          <p style="font-size:26px; font-weight:bold;">$0</p>
-          <p style="color:#777;">Basic Stock Screener</p>
-          <ul style="list-style:none; padding:0; text-align:left; margin-top:20px; font-size:15px;">
-            <li>✔ Basic Stock Screener - 50+ metrics</li>
-            <li>✖ Portfolio Summary Report</li>
-            <li>✖ Stock Reports</li>
-            <li>✖ Weekly Summary Report</li>
-          </ul>
-          <a href="signup.html" class="nav-btn" style="display:inline-block; margin-top:20px;">Get Started</a>
-        </div>
-
-        <!-- Pro Plan -->
-        <div style="background:white; border-radius:8px; padding:30px; box-shadow:0 2px 8px rgba(0,0,0,0.08); text-align:center; border-top:4px solid #0374e7;">
-          <h2>Pro</h2>
-          <p style="font-size:26px; font-weight:bold;">$19.99/mo<br><span style="font-size:14px; color:#777;">or $199.99/yr</span></p>
-          <p style="color:#777;">1 Month Free Trial Eligible</p>
-          <ul style="list-style:none; padding:0; text-align:left; margin-top:20px; font-size:15px;">
-            <li>✔ Advanced Stock Screener - Fundamental grade & categorizations</li>
-            <li>✔ Portfolio Summary (current holdings)</li>
-            <li>✔ 10 Stock Reports/week</li>
-            <li>✖ Weekly Summary Report</li>
-          </ul>
-          <a href="signup.html" class="nav-btn" style="display:inline-block; margin-top:20px;">Start Free Trial</a>
-        </div>
-
-        <!-- Premium Plan -->
-        <div style="background:white; border-radius:8px; padding:30px; box-shadow:0 2px 8px rgba(0,0,0,0.08); text-align:center;">
-          <h2>Premium</h2>
-          <p style="font-size:26px; font-weight:bold;">$39.99/mo<br><span style="font-size:14px; color:#777;">or $399.99/yr</span></p>
-          <ul style="list-style:none; padding:0; text-align:left; margin-top:20px; font-size:15px;">
-            <li>✔ Full Stock Screener - All 11 quantitative grades</li>
-            <li>✔ Portfolio Summary (historical transactions - 1/mo)</li>
-            <li>✔ 100 Stock Reports/week</li>
-            <li>✔ Weekly Summary Report</li>
-          </ul>
-          <a href="signup.html" class="nav-btn" style="display:inline-block; margin-top:20px;">Subscribe</a>
-        </div>
-
-        <!-- Institutional Plan -->
-        <div style="background:white; border-radius:8px; padding:30px; box-shadow:0 2px 8px rgba(0,0,0,0.08); text-align:center;">
-          <h2>Institutional</h2>
-          <p style="font-size:26px; font-weight:bold;">$499.99/mo<br><span style="font-size:14px; color:#777;">or $4,999.99/yr</span></p>
-          <p style="color:#777;">First 3 Months: $299.99/mo</p>
-          <ul style="list-style:none; padding:0; text-align:left; margin-top:20px; font-size:15px;">
-            <li>✔ Institutional Screener - Full historical grades for backtesting</li>
-            <li>✔ Unlimited Portfolio Summary Reports</li>
-            <li>✔ Unlimited Stock Reports</li>
-            <li>✔ Weekly Summary Report</li>
-          </ul>
-          <a href="signup.html" class="nav-btn" style="display:inline-block; margin-top:20px;">Contact Sales</a>
-        </div>
-
+      <!-- Premium Plan -->
+      <div class="plan-card featured">
+        <div class="plan-title">Premium <span style="color:#ffcc00; font-size:12px;">POPULAR!</span></div>
+        <div class="plan-price">$32.99</div>
+        <div class="plan-subnote">per month, billed annually</div>
+        <ul class="plan-features">
+          <li>Full Stock Screener</li>
+          <li>All 11 fundamental grades</li>
+          <li>Portfolio summary w/ historical transactions (1/month)</li>
+          <li>100 stock reports per week</li>
+          <li>Weekly summary report</li>
+        </ul>
+        <a href="#" class="plan-button">Upgrade</a>
       </div>
-    </section>
 
-    <!-- Final CTA Banner -->
-    <section style="background-color:#0d1d3d; color:white; text-align:center; padding:50px 20px;">
-      <h2 style="margin-bottom:10px;">Ready to Access Institutional-Grade Research?</h2>
-      <p style="margin-bottom:25px;">Join RCR Pro today and start making data-driven investment decisions.</p>
-      <a href="signup.html" class="nav-btn" style="margin:5px;">Start Free Trial</a>
-      <a href="samplereports.html" class="nav-btn" style="background-color:white; color:#0d1d3d; font-weight:600; margin:5px;">View Sample Reports</a>
-    </section>
+      <!-- Institutional Plan -->
+      <div class="plan-card">
+        <div class="plan-title">Institutional</div>
+        <div class="plan-price">$419.99</div>
+        <div class="plan-subnote">per month, billed annually</div>
+        <ul class="plan-features">
+          <li>Institutional-grade screener & backtesting</li>
+          <li>Unlimited portfolio summaries</li>
+          <li>Unlimited stock reports</li>
+          <li>Weekly summary report</li>
+        </ul>
+        <a href="#" class="plan-button">Upgrade</a>
+      </div>
+
+    </div>
+  </section>
 
   <!-- ===== FOOTER ===== -->
   <footer class="site-footer">
@@ -503,7 +442,51 @@
       Disclaimer: The information provided by Rossetti Capital Research is for educational and informational purposes only and should not be construed as financial, investment, or other professional advice. We do not make recommendations to buy or sell securities. Past performance is not indicative of future results.
     </div>
   </footer>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const billingButtons = document.querySelectorAll(".billing-options button");
+  const prices = document.querySelectorAll(".plan-card .plan-price");
+  const subnotes = document.querySelectorAll(".plan-card .plan-subnote");
 
-  
+  // Pricing table
+  const pricingData = {
+    annual: {
+      prices: ["$16.99", "$32.99", "$419.99"],
+      subnotes: ["per month, billed annually", "per month, billed annually", "per month, billed annually"]
+    },
+    semiannual: {
+      prices: ["$18.99", "$35.99", "$449.99"],
+      subnotes: ["per month, billed every 6 months", "per month, billed every 6 months", "per month, billed every 6 months"]
+    },
+    monthly: {
+      prices: ["$19.99", "$39.99", "$499.99"],
+      subnotes: ["billed monthly", "billed monthly", "billed monthly"]
+    }
+  };
+
+  billingButtons.forEach((btn, index) => {
+    btn.addEventListener("click", function () {
+      // Remove active class from all buttons
+      billingButtons.forEach(b => b.classList.remove("active"));
+      // Add active class to clicked button
+      this.classList.add("active");
+
+      // Determine which pricing to use
+      let planType;
+      if (index === 0) planType = "annual";
+      if (index === 1) planType = "semiannual";
+      if (index === 2) planType = "monthly";
+
+      // Update prices & subnotes
+      prices.forEach((priceElem, i) => {
+        priceElem.textContent = pricingData[planType].prices[i];
+      });
+      subnotes.forEach((noteElem, i) => {
+        noteElem.textContent = pricingData[planType].subnotes[i];
+      });
+    });
+  });
+});
+</script>
 </body>
 </html>
