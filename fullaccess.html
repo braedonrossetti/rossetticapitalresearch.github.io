@@ -135,110 +135,155 @@
       background-color: #0d1d3d;
       color: white;
       text-align: center;
-      padding: 50px 20px;
+      padding: 60px 20px;
     }
     .pricing-container h1 {
-      font-size: 36px;
-      margin-bottom: 10px;
+      font-size: 42px;
+      font-weight: 800;
+      margin-bottom: 15px;
     }
     .pricing-container p {
       color: #b0c4de;
+      font-size: 18px;
       margin-bottom: 40px;
     }
     .billing-options {
       display: flex;
       justify-content: center;
-      gap: 10px;
-      margin-bottom: 40px;
+      gap: 12px;
+      margin-bottom: 50px;
     }
     .billing-options button {
-      background-color: #f1f1f1;
-      color: #333;
-      border: 1px solid #ccc;
-      padding: 10px 20px;
-      font-size: 14px;
+      background-color: #12254f;
+      border: none;
+      padding: 12px 26px;
+      color: white;
       font-weight: 600;
+      font-size: 14px;
       border-radius: 50px;
       cursor: pointer;
       transition: all 0.25s ease-in-out;
     }
     .billing-options button.active {
       background-color: #0374e7;
-      color: white;
-      border-color: #0374e7
-      font-weight: 700;
     }
     .billing-options button:hover {
-      background-color: #e0e0e0;
+      background-color: #064fa3;
     }
     .pricing-grid {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 30px;
       flex-wrap: wrap;
       margin-top: 20px;
     }
     .plan-card {
       background: white;
       color: black;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      width: 300px;
-      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      width: 310px;
+      padding: 30px 25px;
       text-align: left;
       position: relative;
       display: flex;
       flex-direction: column;
+      transition: transform 0.2s ease-in-out, box shadow 0.2s ease-in-out
+    }
+    .plan-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.18);
     }
     .plan-card.featured {
-      border: 3px solid #ffcc00;
+      border: 2px solid #ffcc00;
       transform: scale(1.05);
     }
+    .plan-card.featured::before {
+      content: "POPULAR!";
+      background-color: #ffcc00;
+      color: #000;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 4px;
+      position: absolute;
+      top: -14px;
+      left: 20px;
+    }
     .plan-title {
-      font-weight: bold;
+      font-weight: 800;
       font-size: 16px;
       margin-bottom: 10px;
     }
     .plan-price {
-      font-size: 32px;
-      font-weight: bold;
-      margin-bottom: 5px;
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      transition: opacity 0.2s ease-in-out;
+    }
+    .fade-out {
+      opacity: 0;
+    }
     }
     .plan-subnote {
       font-size: 14px;
       color: #666;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
     .plan-features {
       list-style: none;
       padding: 0;
-      margin: 0 0 20px 0;
+      margin: 0 0 25px 0;
     }
     .plan-features li {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
-      font-size: 14px;
+      font-size: 15px;
     }
     .plan-features li::before {
       content: '✔';
       color: #0374e7;
       font-weight: bold;
-      margin-right: 8px;
+      margin-right: 10px;
+      font-size: 14px;
     }
     .plan-button {
       margin-top: auto;
       background: #0374e7;
       color: white;
-      padding: 12px;
+      padding: 14px;
       text-align: center;
       border-radius: 6px;
-      font-weight: bold;
+      font-weight: 700;
+      font-size: 15px;
       text-decoration: none;
       transition: background 0.2s ease-in-out;
     }
     .plan-button:hover {
       background: #025ec2;
+    }
+    /* ===== CTA STRIP BELOW ===== */
+    .pricing-cta-bar {
+      background-color: #0b1a38;
+      padding: 25px;
+      margin-top: 50px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .pricing-cta-bar a {
+      background-color: #0374e7;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .pricing-cta-bar a:hover {
+      background-color: #025ec2;
     }
 
     /* ==== FOOTER STYLES ==== */
@@ -313,135 +358,142 @@
 </head>
 <body>
 
-  <!-- Blue Announcement Bar -->
-  <div class="top-bar">
-    <strong>SPECIAL OFFER: GET 1 MONTH OF RCR PRO FREE</strong> – <a href="#">SIGN UP TODAY »</a>
+<!-- Blue Announcement Bar -->
+<div class="top-bar">
+  <strong>SPECIAL OFFER: GET 1 MONTH OF RCR PRO FREE</strong> – <a href="#">SIGN UP TODAY »</a>
+</div>
+
+<!-- Main Navigation -->
+<header class="navbar">
+  <div class="navbar-left">
+    <img src="RCRLogo-v3.png" alt="RCR Logo" />
+  </div>
+  <nav class="navbar-center">
+    <a href="index.html">Home</a>
+    <a href="samplereports.html">Sample Reports</a>
+    <a href="portfoliosummary.html">Portfolio Summary</a>
+    <a href="screener.html">Screener</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="navbar-right">
+    <div class="search-wrapper">
+      <input type="text" placeholder="Search ticker or company" />
+    </div>
+    <a href="fullaccess.html" class="nav-btn">Full Access</a>
+    <a href="login.html" class="nav-btn">Log In</a>
+    <a href="settings.html" class="settings-icon"></a>
+  </div>
+</header>
+
+<!-- ===== FULL ACCESS SECTION ===== -->
+<section class="pricing-container">
+  <h1>Get Full Access to RCR Pro</h1>
+  <p>Unlock institutional-grade equity research starting at just $16.99/month when billed annually.</p>
+
+  <!-- Billing Option Buttons -->
+  <div class="billing-options">
+    <button class="active" data-plan="annual">Annual <span style="font-weight:400;">Over 60% Off</span></button>
+    <button data-plan="semiannual">6 Months <span style="font-weight:400;">Over 40% Off</span></button>
+    <button data-plan="monthly">Monthly</button>
   </div>
 
-  <!-- Main Navigation -->
-  <header class="navbar">
-    <div class="navbar-left">
-      <img src="RCRLogo-v3.png" alt="RCR Logo" />
-    </div>
-    <nav class="navbar-center">
-      <a href="index.html" class="home-btn">Home</a>
-      <a href="samplereports.html" class="samplereports-btn">Sample Reports</a>
-      <a href="portfoliosummary.html" class="portfoliosummary-btn">Portfolio Summary</a>
-      <a href="screener.html" class="screener-btn">Screener</a>
-      <a href="contact.html" class="contact-btn">Contact</a>
-    </nav>
-    <div class="navbar-right">
-      <div class="search-wrapper">
-        <input type="text" placeholder="Search ticker or company" />
-      </div>
-      <a href="fullaccess.html" class="nav-btn">Full Access</a>
-      <a href="login.html" class="nav-btn">Log In</a>
-      <a href="settings.html" class="settings-icon"></a>
-    </div>
-  </header>
+  <!-- Pricing Plans -->
+  <div class="pricing-grid">
 
-  <!-- ===== FULL ACCESS SECTION ===== -->
-  <section class="pricing-container">
-    <h1>Get Full Access to RCR Pro</h1>
-    <p>Unlock institutional-grade equity research starting at just $16.99/month when billed annually.</p>
-
-    <!-- Billing Option Buttons -->
-    <div class="billing-options">
-      <button class="active">Annual <span style="font-weight:400;">Over 60% Off</span></button>
-      <button>6 Months <span style="font-weight:400;">Over 40% Off</span></button>
-      <button>Monthly</button>
+    <!-- Pro Plan -->
+    <div class="plan-card">
+      <div class="plan-title">Pro</div>
+      <div class="plan-price">$16.99</div>
+      <div class="plan-subnote">per month, billed annually</div>
+      <ul class="plan-features">
+        <li>Advanced Stock Screener</li>
+        <li>Fundamental grades & categorizations</li>
+        <li>Portfolio summary on current holdings</li>
+        <li>10 stock reports per week</li>
+      </ul>
+      <a href="#" class="plan-button">Upgrade</a>
     </div>
 
-    <!-- Pricing Plans -->
-    <div class="pricing-grid">
-
-      <!-- Pro Plan -->
-      <div class="plan-card">
-        <div class="plan-title">Pro</div>
-        <div class="plan-price">$16.99</div>
-        <div class="plan-subnote">per month, billed annually</div>
-        <ul class="plan-features">
-          <li>Advanced Stock Screener</li>
-          <li>Fundamental grades & categorizations</li>
-          <li>Portfolio summary on current holdings</li>
-          <li>10 stock reports per week</li>
-        </ul>
-        <a href="#" class="plan-button">Upgrade</a>
-      </div>
-
-      <!-- Premium Plan -->
-      <div class="plan-card featured">
-        <div class="plan-title">Premium <span style="color:#ffcc00; font-size:12px;">POPULAR!</span></div>
-        <div class="plan-price">$32.99</div>
-        <div class="plan-subnote">per month, billed annually</div>
-        <ul class="plan-features">
-          <li>Full Stock Screener</li>
-          <li>All 11 fundamental grades</li>
-          <li>Portfolio summary w/ historical transactions (1/month)</li>
-          <li>100 stock reports per week</li>
-          <li>Weekly summary report</li>
-        </ul>
-        <a href="#" class="plan-button">Upgrade</a>
-      </div>
-
-      <!-- Institutional Plan -->
-      <div class="plan-card">
-        <div class="plan-title">Institutional</div>
-        <div class="plan-price">$419.99</div>
-        <div class="plan-subnote">per month, billed annually</div>
-        <ul class="plan-features">
-          <li>Institutional-grade screener & backtesting</li>
-          <li>Unlimited portfolio summaries</li>
-          <li>Unlimited stock reports</li>
-          <li>Weekly summary report</li>
-        </ul>
-        <a href="#" class="plan-button">Upgrade</a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="site-footer">
-    <!-- Logo + Wordmark -->
-    <div class="footer-branding">
-      <img src="RCRLogo-v4.png" alt="RCR Logo" class="footer-logo">
+    <!-- Premium Plan -->
+    <div class="plan-card featured">
+      <div class="plan-title">Premium</div>
+      <div class="plan-price">$32.99</div>
+      <div class="plan-subnote">per month, billed annually</div>
+      <ul class="plan-features">
+        <li>Full Stock Screener</li>
+        <li>All 11 fundamental grades</li>
+        <li>Portfolio summary w/ historical transactions (1/month)</li>
+        <li>100 stock reports per week</li>
+        <li>Weekly summary report</li>
+      </ul>
+      <a href="#" class="plan-button">Upgrade</a>
     </div>
 
-    <!-- Social Media Icons -->
-    <div class="footer-social">
-      <a href="https://instagram.com/rossetticapital" target="_blank">
-        <img src="insta.png" alt="Instagram">
-      </a>
-      <a href="https://x.com/yourhandle" target="_blank">
-        <img src="twitter.png" alt="X (Twitter)">
-      </a>
-      <a href="https://tiktok.com/@yourhandle" target="_blank">
-        <img src="tiktok.png" alt="TikTok">
-      </a>
-      <a href="https://linkedin.com/company/yourcompany" target="_blank">
-        <img src="linked.png" alt="LinkedIn">
-      </a>
+    <!-- Institutional Plan -->
+    <div class="plan-card">
+      <div class="plan-title">Institutional</div>
+      <div class="plan-price">$419.99</div>
+      <div class="plan-subnote">per month, billed annually</div>
+      <ul class="plan-features">
+        <li>Institutional-grade screener & backtesting</li>
+        <li>Unlimited portfolio summaries</li>
+        <li>Unlimited stock reports</li>
+        <li>Weekly summary report</li>
+      </ul>
+      <a href="#" class="plan-button">Upgrade</a>
     </div>
 
-    <!-- Navigation Links -->
-    <div class="footer-links">
-      <a href="privacy-policy.html">Privacy Policy</a>
-      <a href="terms-of-use.html">Terms of Use</a>
-      <a href="company.html">Company</a>
-      <a href="help.html">Help</a>
-    </div>
+  </div>
 
-    <!-- Copyright -->
-    <div class="footer-copy">
-      © 2025 Rossetti Capital Research. All rights reserved.
-    </div>
+  <!-- CTA Bar -->
+  <div class="pricing-cta-bar">
+    <a href="#">Go Premium for Free</a>
+    <a href="#">Compare Plans</a>
+  </div>
+</section>
 
-    <!-- Disclaimer -->
-    <div class="footer-disclaimer">
-      Disclaimer: The information provided by Rossetti Capital Research is for educational and informational purposes only and should not be construed as financial, investment, or other professional advice. We do not make recommendations to buy or sell securities. Past performance is not indicative of future results.
-    </div>
-  </footer>
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <!-- Logo + Wordmark -->
+  <div class="footer-branding">
+    <img src="RCRLogo-v4.png" alt="RCR Logo" class="footer-logo">
+  </div>
+
+  <!-- Social Media Icons -->
+  <div class="footer-social">
+    <a href="https://instagram.com/rossetticapital" target="_blank">
+      <img src="insta.png" alt="Instagram">
+    </a>
+    <a href="https://x.com/yourhandle" target="_blank">
+      <img src="twitter.png" alt="X (Twitter)">
+    </a>
+    <a href="https://tiktok.com/@yourhandle" target="_blank">
+      <img src="tiktok.png" alt="TikTok">
+    </a>
+    <a href="https://linkedin.com/company/yourcompany" target="_blank">
+      <img src="linked.png" alt="LinkedIn">
+    </a>
+  </div>
+
+  <!-- Navigation Links -->
+  <div class="footer-links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms-of-use.html">Terms of Use</a>
+    <a href="company.html">Company</a>
+    <a href="help.html">Help</a>
+  </div>
+
+  <!-- Copyright -->
+  <div class="footer-copy">
+    © 2025 Rossetti Capital Research. All rights reserved.
+  </div>
+
+  <!-- Disclaimer -->
+  <div class="footer-disclaimer">
+    Disclaimer: The information provided by Rossetti Capital Research is for educational and informational purposes only and should not be construed as financial, investment, or other professional advice. We do not make recommendations to buy or sell securities. Past performance is not indicative of future results.
+  </div>
+</footer>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const billingButtons = document.querySelectorAll(".billing-options button");
@@ -464,23 +516,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  billingButtons.forEach((btn, index) => {
+  billingButtons.forEach(btn => {
     btn.addEventListener("click", function () {
-      // Remove active class from all buttons
+      const planType = this.dataset.plan; // read from data attribute like data-plan="annual"
+
+      // Remove active state from all buttons
       billingButtons.forEach(b => b.classList.remove("active"));
-      // Add active class to clicked button
       this.classList.add("active");
 
-      // Determine which pricing to use
-      let planType;
-      if (index === 0) planType = "annual";
-      if (index === 1) planType = "semiannual";
-      if (index === 2) planType = "monthly";
-
-      // Update prices & subnotes
+      // Animate price updates
       prices.forEach((priceElem, i) => {
-        priceElem.textContent = pricingData[planType].prices[i];
+        if (priceElem.textContent !== pricingData[planType].prices[i]) {
+          priceElem.classList.add("fade-out");
+          setTimeout(() => {
+            priceElem.textContent = pricingData[planType].prices[i];
+            priceElem.classList.remove("fade-out");
+          }, 200);
+        }
       });
+
       subnotes.forEach((noteElem, i) => {
         noteElem.textContent = pricingData[planType].subnotes[i];
       });
