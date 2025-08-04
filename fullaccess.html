@@ -149,42 +149,46 @@
       font-size: 18px;
       margin-bottom: 40px;
     }
+/* Main wrapper: stacks label/note row above billing options */
 .billing-bar {
   display: flex;
-  align-items: center; /* vertically centers everything in this row */
-  justify-content: center; /* centers the middle billing-options block */
-  gap: 20px;
+  flex-direction: column;
+  align-items: center; /* keeps everything centered horizontally */
   margin-bottom: 40px;
-  position: relative; /* lets us position label & note without moving billing options */
 }
 
+/* Row for label and note */
+.billing-label-note {
+  display: flex;
+  justify-content: center; /* centers the pair as a group */
+  gap: 100px; /* space between label and note */
+  margin-bottom: 10px; /* spacing between this row and the billing options */
+}
+
+/* Left label */
 .billing-label {
-  position: absolute;
-  left: 0; /* sticks to left side */
   font-weight: 600;
   color: white;
   font-size: 16px;
-  margin-left: 400px;
 }
 
+/* Right note */
 .billing-note {
-  position: absolute;
-  right: 0; /* sticks to right side */
   font-weight: 600;
   color: #ffcc00;
   font-size: 16px;
   white-space: nowrap;
-  margin-right: 425px;
 }
 
+/* Centered billing toggle */
 .billing-options {
   display: flex;
+  justify-content: center;
   background-color: #0b1a38;
   border-radius: 50px;
   padding: 4px;
   gap: 12px;
   min-width: 260px;
-  justify-content: center;
 }
 
 .billing-options button {
@@ -205,6 +209,7 @@
 .billing-options button:hover {
   background-color: #064fa3;
 }
+
 
 
 
@@ -460,16 +465,20 @@
   <p>Unlock institutional-grade equity research starting at just $16.99/month when billed annually.</p>
 
 <div class="billing-bar">
-  <span class="billing-label">Select billing option:</span>
+  <!-- Top row: label + note -->
+  <div class="billing-label-note">
+    <span class="billing-label">Select billing option:</span>
+    <span class="billing-note" id="billingNote">Over 60% off</span>
+  </div>
 
+  <!-- Billing options (centered below) -->
   <div class="billing-options">
     <button class="active" data-plan="annual">Annual</button>
     <button data-plan="semiannual">6 Months</button>
     <button data-plan="monthly">Monthly</button>
   </div>
-
-  <span class="billing-note" id="billingNote">Over 60% off</span>
 </div>
+
 
 
 
