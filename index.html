@@ -12,25 +12,20 @@
       background: #2e67d6;
       width: 100%;
       display: block;
-    }
-    .announcement-link {
-      display: block;
       text-align: center;
-      padding: 8px 12px;           /* 2px thinner */
-      color: #ffffff;
-      text-decoration: none;
-      line-height: 1.4;
+      padding: 8px 12px;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      font-size: clamp(13px, 2.3vw, 15px); /* slightly smaller */
+      font-size: clamp(13px, 2.3vw, 15px);
+      line-height: 1.4;
     }
 
     .announcement .msg {
       color: #ffffff;
-      font-weight: 650; /* slightly bolder */
+      font-weight: 650;
     }
     .announcement .cta {
       color: #f3cf58;
-      font-weight: 500; /* slightly bolder */
+      font-weight: 500;
       text-decoration: none;
     }
     .announcement .cta:hover {
@@ -39,16 +34,14 @@
       text-underline-offset: 2px;
     }
 
-    .announcement-link:focus-visible { outline: 2px solid rgba(255,255,255,.7); outline-offset: 2px; }
+    .announcement .cta:focus-visible { outline: 2px solid rgba(255,255,255,.7); outline-offset: 2px; }
   </style>
 </head>
 <body>
 
   <div class="announcement" role="region" aria-label="Site announcement">
-    <a class="announcement-link" href="fullaccess.html">
-      <span class="msg">SPECIAL OFFER: GET 1 MONTH OF RCR CORE FREE &mdash;</span>
-      <span class="cta">SIGN UP NOW &gt;&gt;</span>
-    </a>
+    <span class="msg">SPECIAL OFFER: GET 1 MONTH OF RCR CORE FREE &mdash;</span>
+    <a class="cta" href="fullaccess.html">SIGN UP NOW &gt;&gt;</a>
   </div>
 
 </body>
