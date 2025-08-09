@@ -12,75 +12,73 @@
       --text: #ffffff;
       --muted: rgba(255,255,255,.75);
       --border: rgba(255,255,255,.25);
+      --font: 'Segoe UI Variable Display', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
 
     /* --- Announcement Bar ------------------------------------------------ */
-    .announcement { background: #2e67d6; width: 100%; display: block; text-align: center; padding: 8px 12px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; font-size: clamp(13px, 2.3vw, 15px); line-height: 1.4; }
+    .announcement { background: #2e67d6; width: 100%; display: block; text-align: center; padding: 8px 12px; font-family: var(--font); font-size: clamp(13px, 2.3vw, 15px); line-height: 1.4; }
     .announcement .msg { color: #ffffff; font-weight: 650; }
     .announcement .cta { color: var(--cta); font-weight: 500; text-decoration: none; }
     .announcement .cta:hover { text-decoration: underline; text-decoration-color: var(--cta); text-underline-offset: 2px; }
 
     /* --- Navbar ---------------------------------------------------------- */
     .site-header { position: sticky; top: 0; z-index: 1000; background: var(--nav-bg); color: var(--text); box-shadow: 0 1px 0 rgba(255,255,255,.06); }
-    .nav { height: 64px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; padding: 0 14px; }
+    .nav { height: 65px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; padding: 0 14px; font-family: var(--font); }
 
-    /* Left cluster: hamburger (mobile), logo, search */
+    /* Left cluster */
     .nav-left { display: flex; align-items: center; gap: 10px; }
     .logo { display: inline-flex; align-items: center; gap: 8px; }
     .logo img { height: 28px; width: auto; display: block; }
 
-    .icon-btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; background: transparent; border: 1px solid var(--border); color: var(--text); border-radius: 9999px; cursor: pointer; text-decoration: none; font-family: inherit; }
+    .icon-btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; background: transparent; border: 1px solid var(--border); color: var(--text); border-radius: 9999px; cursor: pointer; text-decoration: none; font-family: var(--font); }
     .icon-btn:hover { background: rgba(255,255,255,.06); }
     .icon-btn img { height: 16px; width: 16px; display: block; }
 
-    /* Center cluster: primary nav */
+    /* Center cluster */
     .site-nav { display: flex; justify-content: center; }
     .site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 12px; }
-    .site-nav a { color: var(--muted); text-decoration: none; padding: 8px 10px; border-radius: 8px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; }
+    .site-nav a { color: var(--muted); text-decoration: none; padding: 8px 10px; border-radius: 8px; font-family: var(--font); }
     .site-nav a:hover { color: var(--text); background: rgba(255,255,255,.06); }
 
-    /* Right cluster: Full Access + Login */
+    /* Right cluster */
     .nav-right { display: flex; justify-content: flex-end; align-items: center; gap: 10px; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 8px 14px; border-radius: 9999px; text-decoration: none; font-weight: 600; border: 1px solid transparent; cursor: pointer; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 8px 14px; border-radius: 9999px; text-decoration: none; font-weight: 600; border: 1px solid transparent; cursor: pointer; font-family: var(--font); }
     .btn-full { background: var(--cta); color: #0d1d3d; }
     .btn-full:hover { filter: brightness(0.95); }
     .btn-login { background: transparent; color: var(--text); border-color: var(--border); }
     .btn-login:hover { background: rgba(255,255,255,.06); }
 
-    /* Hamburger (mobile) */
-    .hamburger { display: none; width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--border); background: transparent; color: var(--text); align-items: center; justify-content: center; cursor: pointer; }
+    /* Hamburger */
+    .hamburger { display: none; width: 40px; height: 40px; border: none; background: transparent; color: var(--text); align-items: center; justify-content: center; cursor: pointer; }
     .hamburger .bars, .hamburger .bars::before, .hamburger .bars::after { content: ""; display: block; width: 18px; height: 2px; background: currentColor; position: relative; }
     .hamburger .bars::before { position: absolute; top: -6px; }
     .hamburger .bars::after { position: absolute; top: 6px; }
 
     /* Mobile menu panel */
-    .mobile-menu { display: none; position: absolute; left: 0; right: 0; top: 64px; background: var(--nav-bg); border-top: 1px solid rgba(255,255,255,.08); box-shadow: 0 12px 24px rgba(0,0,0,.2); }
+    .mobile-menu { display: none; position: absolute; left: 0; right: 0; top: 65px; background: var(--nav-bg); border-top: 1px solid rgba(255,255,255,.08); box-shadow: 0 12px 24px rgba(0,0,0,.2); font-family: var(--font); }
     .mobile-menu.open { display: block; }
     .mobile-menu ul { list-style: none; margin: 0; padding: 8px; display: grid; gap: 6px; }
     .mobile-menu a, .mobile-menu button.linky { width: 100%; text-align: left; padding: 10px 12px; border-radius: 10px; color: var(--text); background: transparent; border: 1px solid rgba(255,255,255,.08); text-decoration: none; font: inherit; }
     .mobile-menu a:hover, .mobile-menu button.linky:hover { background: rgba(255,255,255,.06); }
     .mobile-menu .full { background: var(--cta); color: #0d1d3d; border-color: transparent; }
 
-    /* Responsive rules */
     @media (max-width: 900px) {
       .site-nav { display: none; }
       .icon-btn.search { display: none; }
       .hamburger { display: inline-flex; }
       .nav { grid-template-columns: auto 1fr auto; }
+      .btn-full { display: none; }
     }
   </style>
 </head>
 <body>
-  <!-- Announcement bar (non-sticky) -->
   <div class="announcement" role="region" aria-label="Site announcement">
     <span class="msg">SPECIAL OFFER: GET 1 MONTH OF RCR CORE FREE &mdash;</span>
     <a class="cta" href="fullaccess.html">SIGN UP NOW &gt;&gt;</a>
   </div>
 
-  <!-- Sticky Navbar -->
   <header class="site-header" role="banner">
     <div class="nav" aria-label="Primary navigation">
-      <!-- Left cluster -->
       <div class="nav-left">
         <button class="hamburger" id="hamburger" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
           <span class="bars" aria-hidden="true"></span>
@@ -94,7 +92,6 @@
         </a>
       </div>
 
-      <!-- Center cluster -->
       <nav class="site-nav" aria-label="Main">
         <ul>
           <li><a href="screener.html">Stock Screener</a></li>
@@ -104,13 +101,11 @@
         </ul>
       </nav>
 
-      <!-- Right cluster -->
       <div class="nav-right">
         <a class="btn btn-full" href="fullaccess.html">Full Access</a>
         <a class="btn btn-login" href="login.html">Log in</a>
       </div>
 
-      <!-- Mobile menu panel -->
       <div id="mobile-menu" class="mobile-menu" role="dialog" aria-label="Mobile menu">
         <ul>
           <li><button class="linky" type="button"><img src="search-v2.png" alt="" style="height:16px;width:16px;margin-right:8px;vertical-align:middle;">Search</button></li>
@@ -124,21 +119,17 @@
     </div>
   </header>
 
-  <!-- Page content stub -->
-  <main style="padding:24px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; color:#0d1d3d;">
+  <main style="padding:24px; font-family: var(--font); color:#0d1d3d;">
     <p>Content goes here. We’ll add sections next.</p>
   </main>
 
   <script>
-    // Mobile menu toggle
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
     hamburger.addEventListener('click', () => {
       const open = mobileMenu.classList.toggle('open');
       hamburger.setAttribute('aria-expanded', String(open));
     });
-
-    // Close menu when clicking a link
     mobileMenu.addEventListener('click', (e) => {
       if (e.target.matches('a')) {
         mobileMenu.classList.remove('open');
