@@ -5,45 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rossetti Capital Research</title>
   <style>
-    /* Page reset kept minimal so only the bar is affected */
     html, body { margin: 0; }
 
     /* --- Announcement Bar ------------------------------------------------ */
     .announcement {
-      background: #2e67d6; /* requested color */
+      background: #2e67d6;
       width: 100%;
       display: block;
     }
     .announcement-link {
-      display: block;               /* makes whole bar clickable */
+      display: block;
       text-align: center;
-      padding: 10px 12px;           /* tweakable */
+      padding: 8px 12px;           /* 2px thinner */
       color: #ffffff;
-      text-decoration: none;        /* underline appears only on hover */
+      text-decoration: none;
       line-height: 1.4;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      font-size: clamp(14px, 2.4vw, 16px); /* responsive, tweakable */
+      font-size: clamp(13px, 2.3vw, 15px); /* slightly smaller */
     }
-    .announcement-link:hover { text-decoration: underline; text-underline-offset: 2px; }
 
-    .announcement .msg { color: #ffffff; font-weight: 550; }  /* slightly bold */
-    .announcement .cta { color: #f3cf58; font-weight: 400; }
+    .announcement .msg {
+      color: #ffffff;
+      font-weight: 600; /* slightly bolder */
+    }
+    .announcement .cta {
+      color: #f3cf58;
+      font-weight: 400;
+      text-decoration: none;
+    }
+    .announcement .cta:hover {
+      text-decoration: underline;
+      text-decoration-color: #f3cf58; /* underline matches text color */
+      text-underline-offset: 2px;
+    }
 
-    /* Optional focus ring for accessibility */
     .announcement-link:focus-visible { outline: 2px solid rgba(255,255,255,.7); outline-offset: 2px; }
   </style>
 </head>
 <body>
 
-  <!-- Announcement bar (non-sticky) -->
   <div class="announcement" role="region" aria-label="Site announcement">
     <a class="announcement-link" href="fullaccess.html">
       <span class="msg">SPECIAL OFFER: GET 1 MONTH OF RCR CORE FREE &mdash;</span>
       <span class="cta">SIGN UP NOW &gt;&gt;</span>
     </a>
   </div>
-
-  <!-- Page content will go below as we build -->
 
 </body>
 </html>
