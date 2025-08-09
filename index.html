@@ -1,553 +1,460 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="favicon-v4.png" type="image/png">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rossetti Capital Research</title>
+  <meta name="description" content="Equity research for retail investors — stock reports, screeners, portfolio analytics, and subscriptions from Rossetti Capital Research." />
+  <meta property="og:title" content="Rossetti Capital Research" />
+  <meta property="og:description" content="Modern research built for retail investors: powerful stock screener, weekly reports, and portfolio insights." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0b132b" />
+  <link rel="icon" href="/favicon-v4.png" />
   <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Tahoma, sans-serif;
-      background-color: #f5f5f5;
-      padding-top: 110px; /* Space for fixed top-bar + navbar */
-      overflow-x: hidden;
+    :root{
+      --bg: #0b132b;           /* deep navy */
+      --bg-2:#0d1b3d;          /* darker panel */
+      --text:#e6edf6;          /* near-white */
+      --muted:#9fb3c8;         /* soft gray-blue */
+      --accent:#00d1ff;        /* cyan */
+      --accent-2:#6df3a7;      /* mint */
+      --card:#111d3b;          /* card bg */
+      --border:#20325e;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
     }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#f7fbff; --bg-2:#ffffff; --text:#0b132b; --muted:#51627a; --card:#ffffff; --border:#e5eef7; --shadow: 0 8px 24px rgba(8, 19, 43, .08); }
+    }
+    * { box-sizing: border-box }
+    html,body{ height:100% }
+    body{
+      margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text); background: radial-gradient(1200px 1200px at 80% -10%, rgba(0,209,255,.12), transparent 60%),
+                          radial-gradient(900px 900px at -10% 20%, rgba(109,243,167,.10), transparent 60%),
+                          var(--bg);
+      line-height:1.5; -webkit-font-smoothing:antialiased; scroll-behavior:smooth;
+    }
+    a{ color:inherit; text-decoration:none }
+    .container{ width:min(1200px, 92vw); margin-inline:auto }
+    .btn{ display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:.8rem 1.1rem; border-radius:14px; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); box-shadow:var(--shadow); font-weight:600; transition: transform .15s ease, border-color .2s ease, box-shadow .2s ease; }
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(0,209,255,.6); box-shadow: 0 14px 30px rgba(0,209,255,.15) }
+    .btn-primary{ background:linear-gradient(180deg, var(--accent), #00b1db); color:#04232d; border-color: transparent; box-shadow: 0 14px 30px rgba(0,209,255,.25) }
+    .btn-primary:hover{ transform: translateY(-1.5px) }
 
-    /* ===== BLUE TOP ANNOUNCEMENT BAR ===== */
-    .top-bar {
-      background: linear-gradient(180deg, #044a91 0%, #0363f2 100%);
-      color: white;
-      text-align: center;
-      padding: 10px 0;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-    }
-    .top-bar a {
-      color: #ffd700;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .top-bar a:hover {
-      text-decoration: underline;
-    }
+    /* Header */
+    header{ position:sticky; top:0; z-index:1000; backdrop-filter: saturate(140%) blur(8px); background: color-mix(in oklab, var(--bg) 86%, transparent); border-bottom:1px solid var(--border) }
+    .nav{ display:flex; align-items:center; justify-content:space-between; padding:.8rem 0 }
+    .brand{ display:flex; align-items:center; gap:.75rem; font-weight:800; letter-spacing:.2px }
+    .logo-img{ width:auto; height:34px; display:block }
+    .brand small{ display:block; font-size:.8rem; color:var(--muted); font-weight:600; letter-spacing:.2px }
+    nav ul{ display:flex; flex-wrap:wrap; gap:.5rem }
+    nav li{ list-style:none }
+    nav a{ padding:.55rem .8rem; border-radius:10px; color:var(--muted); font-weight:600 }
+    nav a:hover, nav a[aria-current="page"]{ color:var(--text); background: rgba(255,255,255,.06) }
+    .nav-cta{ display:flex; align-items:center; gap:.5rem }
+    .mobile-toggle{ display:none; border:1px solid var(--border); background:transparent; color:var(--text); border-radius:10px; padding:.5rem .7rem }
 
-    /* ===== HEADER NAV ===== */
-    .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: #0d1d3dff;
-      padding: 16px 40px;
-      color: white;
-      position: fixed;
-      top: 38px; /* Height of top-bar */
-      left: 0;
-      width: 100%;
-      z-index: 999;
-    }
-    .navbar-left {
-      display: flex;
-      align-items: center;
-      margin-left: 85px;
-    }
-    .navbar-left img {
-      height: 32px;
-    }
-    .navbar-center {
-      display: flex;
-      gap: 40px;
-    }
-    .navbar-center a {
-      text-decoration: none;
-      color: white;
-      font-size: 15px;
-      font-weight: 600;
-      transition: color 0.2s ease-in-out;
-    }
-    .navbar-center a:hover {
-      color: #64b5f6;
-    }
-    .navbar-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-right: 145px;
-    }
-    .search-wrapper {
-      position: relative;
-    }
-    .search-wrapper input[type="text"] {
-      padding: 6px 36px 6px 30px;
-      border: none;
-      border-radius: 4px;
-      font-size: 14px;
-      width: 240px;
-    }
-    .search-wrapper::before {
-      content: '';
-      position: absolute;
-      left: 8px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 16px;
-      height: 16px;
-      background-image: url('search.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-    }
-    .settings-icon {
-      width: 20px;
-      height: 20px;
-      background-image: url('settings.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      cursor: pointer;
-      opacity: 0.85;
-    }
-    .settings-icon:hover {
-      opacity: 1;
-    }
-    .navbar-right .nav-btn {
-      display: inline-block;
-      background-color: #0374e7;
-      color: white;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 4px;
-      font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-      text-align: center;
-    }
+    /* Hero */
+    .hero{ padding: clamp(48px, 8vw, 96px) 0 48px }
+    .hero-grid{ display:grid; grid-template-columns: 1.2fr .8fr; gap: clamp(20px, 4vw, 48px); align-items:center }
+    .eyebrow{ color:var(--accent-2); font-weight:700; letter-spacing:.25rem; text-transform:uppercase; font-size:.8rem }
+    h1{ font-size: clamp(2rem, 4.4vw, 3.4rem); line-height:1.1; margin:.5rem 0 1rem }
+    .lead{ font-size: clamp(1rem, 1.4vw, 1.2rem); color:var(--muted) }
 
-    .navbar-right .nav-btn:hover {
-      background-color: #5b97d3;
-    }
+    .search-wrap{ margin-top:1.25rem; display:flex; gap:.75rem; align-items:center; flex-wrap:wrap }
+    .search{ position:relative; flex:1 1 440px; min-width:260px }
+    .search input{ width:100%; padding:1rem 3.25rem 1rem 1rem; border-radius:14px; border:1px solid var(--border); background:linear-gradient(180deg, var(--bg-2), color-mix(in oklab, var(--bg-2) 70%, black 3%)); color:var(--text); outline:none; box-shadow: inset 0 0 0 9999px rgba(255,255,255,.02); }
+    .search input::placeholder{ color: color-mix(in oklab, var(--muted) 85%, transparent) }
+    .search .kbd{ position:absolute; right:.6rem; top:50%; transform:translateY(-50%); font-size:.8rem; color:var(--muted); border:1px solid var(--border); border-bottom-width:2px; padding:.1rem .35rem; border-radius:6px; }
+    .suggest{ position:absolute; top:calc(100% + 6px); left:0; right:0; background:var(--card); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow); overflow:hidden; display:none; max-height:280px; overflow-y:auto }
+    .suggest button{ width:100%; text-align:left; background:transparent; color:var(--text); border:0; padding:.8rem 1rem; font-size:.95rem; cursor:pointer }
+    .suggest button:hover, .suggest button[aria-selected="true"]{ background: rgba(255,255,255,.06) }
 
-    /* ===== MAIN APP CONTAINER ===== */
-    .main-container {
-      width: 100%;
-      margin: 0;
-      background-color: white;
-      padding: 40px 0;
-      border-radius: 0;
-      box-shadow: none;
-      text-align: center;
-      margin-top: -10px;
-    }
+    .hero-card{ background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid var(--border); border-radius:18px; padding:1.25rem; box-shadow:var(--shadow) }
+    .hero-card h3{ margin:.2rem 0 .6rem }
+    .kv{ display:grid; grid-template-columns: 1fr 1fr; gap:.75rem; margin-top:1rem }
+    .kv div{ background:var(--bg-2); border:1px solid var(--border); border-radius:12px; padding:.8rem }
+    .kv small{ color:var(--muted); display:block }
 
-    .main-container h1 {
-      font-size: 42px;
-      font-weight: 700;
-      margin-bottom: 15px;
-      color: #222;
-      padding: 0 40px;
-    }
+    /* Feature cards */
+    .section{ padding: 52px 0 }
+    .section h2{ font-size: clamp(1.4rem, 3.2vw, 2.2rem); margin:0 0 .75rem }
+    .muted{ color:var(--muted) }
+    .grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2vw, 24px) }
+    .card{ background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.1rem; box-shadow:var(--shadow); transition: transform .12s ease }
+    .card:hover{ transform: translateY(-2px) }
+    .card h3{ margin:.3rem 0 .3rem }
+    .chip{ display:inline-block; font-size:.75rem; padding:.25rem .5rem; border-radius:999px; border:1px solid var(--border); color:var(--muted) }
 
-    /* Benefits Section */
-    .benefits {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      list-style: none;
-      padding: 0 40px;
-      margin: 0 auto 30px auto;
-      max-width: 1200px;
-    }
-    .benefits li {
-      font-size: 15px;
-      color: #333;
-      white-space: nowrap;
-    }
-    .benefits li::before {
-      content: "✔";
-      color: #0374e7;
-      font-weight: bold;
-      margin-right: 8px;
-    }
-    .benefits li strong {
-      color: #0374e7;
-    }
+    /* Showcase */
+    .showcase{ display:grid; grid-template-columns: 1fr 1fr; gap:28px; align-items:center }
+    .mock{ aspect-ratio: 16/10; background: var(--bg-2); border-radius:16px; border:1px solid var(--border); display:block; overflow:hidden }
 
-    /* Feature Grid with margins */
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-      padding: 0 200px; /* Substantial side margins */
-    }
-    .feature-card {
-      background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
-      padding: 20px;
-      border-radius: 6px;
-      text-align: center;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-      transition: transform 0.25s ease;
-    }
-    .feature-card:hover {
-      transform: translateY(-4px);
-    }
-    .feature-card h3 {
-      margin-top: 0;
-      color: #333;
-    }
-    .feature-card button {
-      margin-top: 15px;
-      background-color: #0374e7;
-      color: white;
-      border: none;
-      padding: 12px 0;
-      width: 180px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: 600;
-      text-align: center;
-    }
-    .feature-card button:hover {
-      background-color: #5b97d3;
-    }
+    /* Pricing */
+    .pricing{ display:grid; grid-template-columns: repeat(3, 1fr); gap:20px }
+    .price-card{ padding:1.25rem; background:linear-gradient(180deg, rgba(0,209,255,.08), rgba(255,255,255,.02)); border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow) }
+    .price-card h3{ margin:.3rem 0 }
+    .price{ font-size:1.8rem; font-weight:800; }
+    .features{ padding-left:1rem; margin:.5rem 0 1rem; line-height:1.6 }
 
-    /* ===== REPORTS PREVIEW SECTION ===== */
-    .report-section {
-      max-width: 1100px;
-      margin: 70px auto 0 auto;
-      text-align: center;
-    }
-    .report-preview {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      margin-top: 40px;
-    }
-    .report-preview img {
-      width: 420px;
-      position: absolute;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.25);
-      border-radius: 6px;
-      pointer-events: none;
-    }
-    .report-preview img:nth-child(1) {
-      transform: rotate(-6deg) translateX(-240px);
-      z-index: 1;
-    }
-    .report-preview img:nth-child(2) {
-      transform: rotate(0deg);
-      z-index: 2;
-    }
-    .report-preview img:nth-child(3) {
-      transform: rotate(6deg) translateX(240px);
-      z-index: 1;
-    }
+    /* Testimonials */
+    .testi{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px }
+    .quote{ background:var(--card); border:1px solid var(--border); border-radius:14px; padding:1rem; font-size:.95rem }
 
-    /* ===== MEMBER PERKS ===== */
-    .member-perks {
-      width: 100%;
-      margin: 405px 0 0 0;
-      background-color: white;
-      padding: 40px 0;
-      text-align: center;
-      position: relative;
-      z-index: 3;
-      box-shadow: none;
-      box-sizing: border-box;
-    }
-    .member-perks-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-      box-sizing: border-box;
-      padding-bottom: 40px;
-    }
-    .perk-list {
-      list-style: none;
-      padding: 0;
-      margin: 20px auto 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-    }
-    .perk-list li {
-      font-size: 18px;
-      color: #333;
-      white-space: nowrap;
-      text-align: center;
-      width: 100%;
-    }
-    .perk-list li strong {
-      color: #0374e7;
-    }
+    /* Footer */
+    footer{ border-top:1px solid var(--border); padding:28px 0; color:var(--muted) }
+    .foot{ display:flex; gap:18px; justify-content:space-between; align-items:center; flex-wrap:wrap }
 
-    /* ==== FINAL CTA BANNER ==== */
-    .final-cta {
-      margin-top: 0;
-      padding: 60px 20px;
-      background-color: #0d1d3dff;
-      color: white;
-      text-align: center;
-      border-top: none;
-      border-bottom: none;
-      margin-bottom: 0;
-      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.08);
-    }
-    .final-cta h2 {
-      font-size: 28px;
-      font-weight: 700;
-      color: white;
-      margin-bottom: 15px;
-    }
-    .final-cta p {
-      font-size: 16px;
-      color: #cdd9f0;
-      margin-bottom: 25px;
-    }
-    .final-cta .cta-buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-    .final-cta a {
-      background-color: #0374e7;
-      color: white;
-      padding: 14px 28px;
-      border-radius: 4px;
-      font-size: 16px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: background-color 0.2s ease;
-    }
-    .final-cta a:hover {
-      background-color: #5b97d3;
-    }
-
-    /* ==== FOOTER STYLES ==== */
-    .site-footer {
-      background-color: #0d1d3dff;
-      padding: 40px 20px;
-      text-align: center;
-      font-family: Arial, sans-serif;
-      border-top: none;
-      max-width: 100%;
-      box-sizing: none;
-    }
-    .site-footer img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-    }
-    .footer-branding {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-    .footer-logo {
-      height: 180px !important;
-      width: auto;
-    }
-    .footer-social {
-      margin-bottom: 120px;
-    }
-    .footer-social a {
-      display: inline-block;
-      margin: 0 8px;
-      transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-    .footer-social img {
-      height: 28px;
-      width: auto;
-    }
-    .footer-social a:hover {
-      transform: scale(1.1);
-      opacity: 0.8;
-    }
-    .footer-links {
-      margin-bottom: 80px;
-    }
-    .footer-links a {
-      margin: 0 12px;
-      color: #64b5f6;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .footer-links a:hover {
-      text-decoration: underline;
-    }
-    .footer-copy {
-      margin-bottom: 30px;
-      font-size: 14px;
-      color: #dce3f0;
-    }
-    .footer-disclaimer {
-      margin-top: 30px;
-      font-size: 12px;
-      color: #dce3f0;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.4;
-    }
+    /* Responsive */
+    @media (max-width: 980px){ .hero-grid{ grid-template-columns: 1fr } .showcase{ grid-template-columns: 1fr } .grid{ grid-template-columns: 1fr 1fr } .pricing{ grid-template-columns: 1fr 1fr } .testi{ grid-template-columns:1fr } nav ul{ display:none } .mobile-toggle{ display:inline-flex } }
+    @media (max-width: 640px){ .kv{ grid-template-columns: 1fr } .grid{ grid-template-columns: 1fr } .pricing{ grid-template-columns: 1fr } }
   </style>
 </head>
 <body>
-
-  <!-- Blue Announcement Bar -->
-  <div class="top-bar">
-    <strong>SPECIAL OFFER: GET 1 MONTH OF RCR PRO FREE</strong> – <a href="#">SIGN UP TODAY »</a>
-  </div>
-
-  <!-- Main Navigation -->
-  <header class="navbar">
-      <div class="navbar-left">
-        <img src="RCRLogo-v3.png" alt="RCR Logo" />
-      </div>
-      <nav class="navbar-center">
-        <a href="index.html" class="home-btn">Home</a>
-        <a href="samplereports.html" class="samplereports-btn">Sample Reports</a>
-        <a href="portfoliosummary.html" class="portfoliosummary-btn">Portfolio Summary</a>
-        <a href="screener.html" class="screener-btn">Screener</a>
-        <a href="contact.html" class="contact-btn">Contact</a>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <a class="brand" href="#" aria-current="page">
+        <img src="RCRLogo-v4.png" alt="RCR logo" class="logo-img" />
+        <span>Rossetti Capital Research<small>Don’t just watch the market—use tools to beat it.</small></span>
+      </a>
+      <button class="mobile-toggle" aria-controls="menu" aria-expanded="false">☰ Menu</button>
+      <nav>
+        <ul id="menu" aria-label="Main menu">
+          <li><a href="/reports.html">Stock Reports</a></li>
+          <li><a href="/screener.html">Screener</a></li>
+          <li><a href="/portfolio.html">Portfolio</a></li>
+          <li><a href="/pricing.html">Pricing</a></li>
+          <li><a href="/samples.html">Samples</a></li>
+          <li><a href="/methodology.html">Methodology</a></li>
+        </ul>
       </nav>
-      <div class="navbar-right">
-        <div class="search-wrapper">
-          <input type="text" placeholder="Search ticker or company" />
+      <div class="nav-cta">
+        <a class="btn" href="/login.html" aria-label="Log in">Log in</a>
+        <a class="btn btn-primary" href="/signup.html" aria-label="Create an account">Start free</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Built for retail investors</div>
+          <h1>Institutional‑grade equity research, made simple.</h1>
+          <p class="lead">Run a quick screen, open a weekly stock report, or upload your holdings to get instant portfolio analytics. No jargon. No bloat. Just signal.</p>
+          <form class="search-wrap" action="/reports.html" method="GET" role="search" aria-label="Search ticker or company">
+            <div class="search">
+              <input id="q" name="q" type="search" inputmode="search" autocomplete="off" placeholder="Search ticker or company (e.g., AAPL or Apple)" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded="false" aria-controls="suggest" aria-label="Search ticker or company" />
+              <kbd class="kbd">/</kbd>
+              <div id="suggest" class="suggest" role="listbox" aria-label="Suggestions"></div>
+            </div>
+            <button class="btn btn-primary" type="submit" aria-label="Open report">Open report</button>
+            <a class="btn" href="/screener.html" aria-label="Open stock screener">Open screener</a>
+          </form>
+          <div class="kv" aria-label="Highlights">
+            <div><small>Coverage</small><strong>3,500+ equities</strong></div>
+            <div><small>Metrics</small><strong>50+ fundamentals</strong></div>
+            <div><small>Refresh</small><strong>Weekly updates</strong></div>
+            <div><small>Latency</small><strong>&lt; 2s per query</strong></div>
+            <div><small>Backtest</small><strong>Top‑20 beat S&P 500 by 13.38% since 2025 <span title="Backtest notes: composite ranking applied weekly to a 20‑stock equal‑weight portfolio; no fees, taxes, or slippage included.">ⓘ</span></strong></div>
+          </div>
         </div>
-        <a href="fullaccess.html" class="nav-btn">Full Access</a>
-        <a href="login.html" class="nav-btn">Log In</a>
-        <a href="settings.html" class="settings-icon"></a>
+        <aside class="hero-card" aria-label="Quick links">
+          <h3>Quick actions</h3>
+          <p class="muted">Jump right into what matters.</p>
+          <div class="grid">
+            <a class="card" href="/screener.html"><span class="chip">Tool</span><h3>Stock Screener</h3><p class="muted">Filter by 11 quantitative grades, value/growth labels, and risk flags.</p></a>
+            <a class="card" href="/portfolio.html"><span class="chip">Tool</span><h3>Portfolio Analysis</h3><p class="muted">Upload a CSV or connect a broker to get diversification & factor breakdowns.</p></a>
+            <a class="card" href="/samples.html"><span class="chip">Preview</span><h3>Sample Reports</h3><p class="muted">See exactly what subscribers receive each week.</p></a>
+          </div>
+        </aside>
       </div>
-    </header>
+    </section>
 
-  <!-- Main Container -->
-  <div class="main-container">
-    <h1>Institutional-Grade Equity Research, Automated</h1>
-    <ul class="benefits">
-      <li><strong>Instant Research</strong> — full equity reports in seconds</li>
-      <li><strong>Actionable Insights</strong> — clear buy/sell recommendations</li>
-      <li><strong>Market Outlook</strong> — weekly guidance to stay ahead</li>
-    </ul>
-
-    <!-- Feature Card Section -->
-    <div class="feature-grid">
-      <div class="feature-card">
-        <h3>View Sample Reports</h3>
-        <p>Explore a live example of our in-depth RCR stock analysis report.</p>
-        <button>View Reports</button>
+    <!-- WHY RCR -->
+    <section class="section">
+      <div class="container">
+        <h2>Why Rossetti Capital Research?</h2>
+        <p class="muted">We turn raw filings and fundamentals into clean, comparable signals so you can make decisions quickly and confidently.</p>
+        <div class="grid" role="list">
+          <div class="card" role="listitem">
+            <h3>Transparent methodology</h3>
+            <p class="muted">Each grade maps to documented metrics and weights. Bear/Base/Bull cases are shown side‑by‑side.</p>
+          </div>
+          <div class="card" role="listitem">
+            <h3>Retail‑first UX</h3>
+            <p class="muted">Tooling designed for speed: keyboard shortcuts, clean tables, and downloadable PDFs.</p>
+          </div>
+          <div class="card" role="listitem">
+            <h3>Repeatable process</h3>
+            <p class="muted">Weekly refresh pipeline across 3,500+ names with automated checks and anomaly flags.</p>
+          </div>
+        </div>
       </div>
-      <div class="feature-card">
-        <h3>Portfolio Summary</h3>
-        <p>Analyze your portfolio’s performance against benchmarks instantly.</p>
-        <button>View Summary</button>
+    </section>
+
+    <!-- SHOWCASE / IMAGES -->
+    <section class="section">
+      <div class="container showcase">
+        <div>
+          <h2>See the reports before you subscribe</h2>
+          <p class="muted">Drop in your email to get two free sample reports and our weekly market note. No spam, unsubscribe anytime.</p>
+          <form class="search-wrap" action="/subscribe-preview" method="POST">
+            <div class="search" style="flex:1">
+              <input type="email" name="email" placeholder="Your email" aria-label="Email" required />
+            </div>
+            <button class="btn btn-primary" type="submit">Send samples</button>
+            <a class="btn" href="/samples.html">Browse samples</a>
+          </form>
+        </div>
+        <div class="mock">
+          <figure style="margin:0; display:grid; grid-template-columns:1fr; gap:0">
+            <img src="PSRsample1.png" alt="Portfolio Summary sample" style="width:100%; display:block" />
+            <img src="SRsample1.png" alt="Stock Report sample" style="width:100%; display:block" />
+            <img src="WSRsample1.png" alt="Weekly Summary sample" style="width:100%; display:block" />
+          </figure>
+        </div>
       </div>
-      <div class="feature-card">
-        <h3>Market Outlook</h3>
-        <p>Weekly macro analysis, top stock picks, and sector rankings.</p>
-        <button>See Outlook</button>
+    </section>
+
+    <!-- GRADES SUMMARY -->
+    <section class="section">
+      <div class="container">
+        <h2>The 11 quantitative grades</h2>
+        <p class="muted">Every stock is scored consistently across these dimensions to produce a composite rank.</p>
+        <div class="grid">
+          <div class="card"><h3>Style</h3><p class="muted">Value · Blend · Growth</p></div>
+          <div class="card"><h3>Lifecycle</h3><p class="muted">Early Stage · Growth · Maturity · Decline</p></div>
+          <div class="card"><h3>Valuation</h3><p class="muted">Very Overvalued → Very Undervalued</p></div>
+          <div class="card"><h3>Risk</h3><p class="muted">Speculative · High · Moderate · Low</p></div>
+          <div class="card"><h3>Downside Sensitivity</h3><p class="muted">Highly Disruptable · Moderate · Durable · Defensive</p></div>
+          <div class="card"><h3>Capital Efficiency</h3><p class="muted">Capital Intensive · Moderate · Capital Light</p></div>
+          <div class="card"><h3>Scalability</h3><p class="muted">Unscalable · Low · Moderate · High</p></div>
+          <div class="card"><h3>Moat Strength</h3><p class="muted">No Moat · Narrow · Wide · Dominant</p></div>
+          <div class="card"><h3>Management</h3><p class="muted">Concerning · Unproven · Competent · Exceptional</p></div>
+          <div class="card"><h3>Earnings Quality</h3><p class="muted">Unreliable · Aggressive · Neutral · Conservative</p></div>
+          <div class="card"><h3>Recommendation</h3><p class="muted">Strong Sell → Strong Buy (synthesized)</p></div>
+        </div>
+        <p style="margin-top:12px"><a class="btn" href="/methodology.html">Read the full methodology</a></p>
       </div>
-      <div class="feature-card">
-        <h3>Stock Screener</h3>
-        <p>Find your next trade with our advanced RCR fundamental screener.</p>
-        <button>Open Screener</button>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section">
+      <div class="container">
+        <h2>Simple pricing that scales with you</h2>
+        <p class="muted">Choose Monthly, 6‑Month, or Annual billing.</p>
+        <div style="display:flex; gap:.5rem; align-items:center; margin-bottom:14px">
+          <span class="chip">Billing</span>
+          <div role="tablist" aria-label="Billing options" style="display:flex; gap:.4rem; flex-wrap:wrap">
+            <button class="btn" data-bill="annual" aria-selected="true">Annual</button>
+            <button class="btn" data-bill="semi">6 months</button>
+            <button class="btn" data-bill="monthly">Monthly</button>
+          </div>
+        </div>
+        <div class="pricing">
+          <div class="price-card">
+            <span class="chip">Core</span>
+            <h3>For getting started</h3>
+            <ul class="muted features">
+              <li>10 stock reports / week</li>
+              <li>Advanced stock screener</li>
+              <li>Basic portfolio analysis</li>
+            </ul>
+            <div class="price" data-annual="$16.99/mo" data-semi="$27.99/mo" data-monthly="$41.99/mo">$16.99/mo</div>
+            <a class="btn" href="/signup.html?plan=core">Start Core</a>
+          </div>
+          <div class="price-card">
+            <span class="chip">Premium</span>
+            <h3>Most popular</h3>
+            <ul class="muted features">
+              <li>100 stock reports / week</li>
+              <li>Full stock screener (all 11 grades)</li>
+              <li>1 portfolio summary report / week</li>
+            </ul>
+            <div class="price" data-annual="$32.99/mo" data-semi="$54.99/mo" data-monthly="$81.99/mo">$32.99/mo</div>
+            <a class="btn btn-primary" href="/signup.html?plan=premium">Start Premium</a>
+          </div>
+          <div class="price-card">
+            <span class="chip">Institutional</span>
+            <h3>For teams & funds</h3>
+            <ul class="muted features">
+              <li>Unlimited stock reports & portfolio summaries</li>
+              <li>Historical grades & data for backtesting</li>
+              <li>Full stock screener + API access</li>
+            </ul>
+            <div class="price" data-annual="$419.99/mo" data-semi="$699.99/mo" data-monthly="$1,099.99/mo">$419.99/mo</div>
+            <a class="btn" href="/pricing.html#institutional">Talk to us</a>
+          </div>
+        </div>
+        <p class="muted" style="margin-top:10px; font-size:.85rem">Prices in USD. Cancel anytime. Taxes may apply.</p>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- Reports Preview Section -->
-  <div class="report-section">
-    <div class="report-preview">
-      <img src="PSRsample1.png" alt="Portfolio Summary Sample Report">
-      <img src="SRsample1.png" alt="Stock Report Sample">
-      <img src="WSRsample1.png" alt="Weekly Summary Report">
-    </div>
-  </div>
+    <!-- MOVERS -->
+    <section class="section" aria-labelledby="movers-title">
+      <div class="container">
+        <h2 id="movers-title">This week’s movers</h2>
+        <p class="muted">Top upgrades/downgrades by composite rank. Updated weekly.</p>
+        <div id="movers" class="grid"></div>
+      </div>
+    </section>
 
-  <!-- Member Perks Section -->
-  <div class="member-perks">
-    <div class="member-perks-inner">
-      <h2>What You'll Get as a Member</h2>
-      <ul class="perk-list">
-        <li><strong>3,500+</strong> stock reports updated weekly</li>
-        <li><strong>Weekly market outlook</strong> & top picks</li>
-        <li><strong>Portfolio performance tracking</strong> vs. benchmarks</li>
-        <li><strong>Exclusive alerts</strong> for your watchlist</li>
-      </ul>
-    </div>
-  </div>
+    <!-- SOCIAL PROOF -->
+    <section class="section">
+      <div class="container">
+        <h2>Trusted by self‑directed investors</h2>
+        <div class="testi">
+          <div class="quote">“Clear, concise weekly reports. The grades make it easy to compare names across sectors.” <br><strong>— Retail investor</strong></div>
+          <div class="quote">“The screener + portfolio summary helped me trim risk and focus on high‑quality.” <br><strong>— Premium member</strong></div>
+          <div class="quote">“Historical grades are perfect for backtests and idea generation.” <br><strong>— Small fund PM</strong></div>
+        </div>
+        <p class="muted" style="margin-top:8px; font-size:.85rem">Logos and testimonials are samples for illustration; replace with real client quotes or media mentions.</p>
+      </div>
+    </section>
 
-  <!-- Final Call to Action -->
-  <div class="final-cta">
-    <h2>Ready to Invest Smarter?</h2>
-    <p>Join RCR Pro today and access institutional-grade insights in seconds.</p>
-    <div class="cta-buttons">
-      <a href="fullaccess.html">Start Free Trial</a>
-      <a href="samplereports.html">View Sample Reports</a>
-    </div>
-  </div>
+    <!-- CTA -->
+    <section class="section">
+      <div class="container" style="text-align:center">
+        <h2>Ready to try RCR?</h2>
+        <p class="muted">Search a ticker, run a screen, or analyze your portfolio in minutes.</p>
+        <p>
+          <a class="btn btn-primary" href="#q">Search now</a>
+          <a class="btn" href="/screener.html">Open screener</a>
+        </p>
+      </div>
+    </section>
+  </main>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="site-footer">
-    <!-- Logo + Wordmark -->
-    <div class="footer-branding">
-      <img src="RCRLogo-v4.png" alt="RCR Logo" class="footer-logo">
-    </div>
-
-    <!-- Social Media Icons -->
-    <div class="footer-social">
-      <a href="https://instagram.com/rossetticapital" target="_blank">
-        <img src="insta-v2.png" alt="Instagram">
-      </a>
-      <a href="https://x.com/yourhandle" target="_blank">
-        <img src="twitter-v2.png" alt="X (Twitter)">
-      </a>
-      <a href="https://tiktok.com/@yourhandle" target="_blank">
-        <img src="tiktok-v2.png" alt="TikTok">
-      </a>
-      <a href="https://linkedin.com/company/yourcompany" target="_blank">
-        <img src="linked-v2.png" alt="LinkedIn">
-      </a>
-    </div>
-
-    <!-- Navigation Links -->
-    <div class="footer-links">
-      <a href="privacy-policy.html">Privacy Policy</a>
-      <a href="terms-of-use.html">Terms of Use</a>
-      <a href="company.html">Company</a>
-      <a href="help.html">Help</a>
-    </div>
-
-    <!-- Copyright -->
-    <div class="footer-copy">
-      © 2025 Rossetti Capital Research. All rights reserved.
-    </div>
-
-    <!-- Disclaimer -->
-    <div class="footer-disclaimer">
-      Disclaimer: The information provided by Rossetti Capital Research is for educational and informational purposes only and should not be construed as financial, investment, or other professional advice. We do not make recommendations to buy or sell securities. Past performance is not indicative of future results.
+  <footer>
+    <div class="container foot">
+      <div style="display:flex; align-items:center; gap:.6rem">
+        <img src="RCRLogo-v4.png" alt="RCR logo" class="logo-img" />
+        <span>© <span id="year"></span> Rossetti Capital Research</span>
+      </div>
+      <nav aria-label="Footer">
+        <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a> · <a href="/contact.html">Contact</a>
+      </nav>
+      <small style="max-width:760px">Research is provided for informational and educational purposes and is not investment advice. Past performance is not indicative of future results. Decisions should account for your objectives, risk tolerance, and constraints.</small>
     </div>
   </footer>
 
-  
+  <script>
+    // --- Mobile menu toggle ---
+    const toggle = document.querySelector('.mobile-toggle');
+    const menu = document.getElementById('menu');
+    toggle?.addEventListener('click', () => {
+      const open = menu.style.display === 'flex';
+      menu.style.display = open ? 'none' : 'flex';
+      menu.style.flexDirection = 'column';
+      toggle.setAttribute('aria-expanded', String(!open));
+    });
+
+    // --- Keyboard shortcut for search ('/' to focus) ---
+    const q = document.getElementById('q');
+    window.addEventListener('keydown', (e) => {
+      if (e.key === '/' && document.activeElement !== q) {
+        e.preventDefault(); q?.focus(); q?.select();
+      }
+    });
+
+    // --- Simple suggestions (replace with live API) ---
+    const SUGGESTIONS = [
+      { t: 'AAPL', n: 'Apple Inc.' },
+      { t: 'MSFT', n: 'Microsoft Corporation' },
+      { t: 'NVDA', n: 'NVIDIA Corporation' },
+      { t: 'TSM',  n: 'Taiwan Semiconductor Mfg.' },
+      { t: 'CPRX', n: 'Catalyst Pharmaceuticals' },
+      { t: 'CALM', n: 'Cal-Maine Foods' },
+      { t: 'QFIN', n: '360 DigiTech, Inc.' },
+      { t: 'TSLA', n: 'Tesla, Inc.' },
+      { t: 'AMZN', n: 'Amazon.com, Inc.' },
+      { t: 'META', n: 'Meta Platforms, Inc.' },
+    ];
+
+    const suggest = document.getElementById('suggest');
+    function debounce(fn, ms=120){ let id; return (...args)=>{ clearTimeout(id); id=setTimeout(()=>fn(...args), ms); } }
+
+    function render(list){
+      suggest.innerHTML = '';
+      list.forEach((item, i) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.role = 'option';
+        btn.dataset.ticker = item.t; btn.dataset.name = item.n;
+        btn.setAttribute('aria-selected', String(i===0));
+        btn.textContent = `${item.t} — ${item.n}`;
+        btn.addEventListener('click', () => { q.value = item.t; suggest.style.display='none'; q.form?.submit(); });
+        suggest.appendChild(btn);
+      });
+      const open = list.length > 0; suggest.style.display = open ? 'block' : 'none';
+      q.setAttribute('aria-expanded', String(open));
+    }
+
+    const update = debounce(() => {
+      const v = q.value.trim().toUpperCase();
+      if (!v) { render([]); return; }
+      const list = SUGGESTIONS.filter(s => s.t.startsWith(v) || s.n.toUpperCase().includes(v)).slice(0,6);
+      render(list);
+    }, 80);
+
+    q.addEventListener('input', update);
+    q.addEventListener('keydown', (e) => {
+      // Enter submits as-is; ArrowDown/Up navigates suggestions
+      const opts = [...suggest.querySelectorAll('button')];
+      const i = opts.findIndex(b => b.getAttribute('aria-selected')==='true');
+      if (e.key === 'ArrowDown' && opts.length){ e.preventDefault(); const ni = Math.min(opts.length-1, i+1); opts.forEach(b=>b.setAttribute('aria-selected','false')); opts[ni].setAttribute('aria-selected','true'); opts[ni].scrollIntoView({block:'nearest'}); }
+      if (e.key === 'ArrowUp' && opts.length){ e.preventDefault(); const ni = Math.max(0, i-1); opts.forEach(b=>b.setAttribute('aria-selected','false')); opts[ni].setAttribute('aria-selected','true'); opts[ni].scrollIntoView({block:'nearest'}); }
+      if (e.key === 'Enter' && opts.length && i>=0 && q.value.trim() !== opts[i].dataset.ticker){ e.preventDefault(); q.value = opts[i].dataset.ticker; q.form?.submit(); }
+      if (e.key === 'Escape'){ render([]); }
+    });
+
+    // Validate ticker on submit (optional)
+    document.querySelector('form[action="/reports.html"]').addEventListener('submit', (e) => {
+      const v = q.value.trim();
+      if (!v){ e.preventDefault(); return; }
+      const tickerLike = /^[A-Za-z]{1,6}(?:[.-][A-Za-z]{1,3})?$/;
+      if (tickerLike.test(v.toUpperCase())) return; // ok
+      q.value = v.length <= 64 ? v : v.slice(0,64);
+    });
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Pricing toggle (Annual / 6 months / Monthly)
+    const billBtns = document.querySelectorAll('[data-bill]');
+    billBtns.forEach(btn=>btn.addEventListener('click',()=>{
+      billBtns.forEach(b=>b.setAttribute('aria-selected','false'));
+      btn.setAttribute('aria-selected','true');
+      const mode = btn.dataset.bill; // 'annual' | 'semi' | 'monthly'
+      document.querySelectorAll('.price-card .price').forEach(p=>{
+        const annual=p.getAttribute('data-annual');
+        const semi=p.getAttribute('data-semi');
+        const monthly=p.getAttribute('data-monthly');
+        p.textContent = (mode==='monthly'? monthly : mode==='semi'? semi : annual) || annual;
+      });
+    }));
+
+    // Movers widget (replace with /api/movers)
+    const MOVERS = [
+      {ticker:'RMBS', change:'+7 ranks', reason:'Earnings beat; valuation improved'},
+      {ticker:'CALM', change:'+5 ranks', reason:'Margin expansion; cash build'},
+      {ticker:'CPRX', change:'-4 ranks', reason:'Guide lowered; risk ↑'},
+      {ticker:'KGC',  change:'+3 ranks', reason:'Gold strength; leverage down'},
+      {ticker:'EVER', change:'+3 ranks', reason:'Rev surprise; momentum'},
+      {ticker:'PLMR', change:'-6 ranks', reason:'Loss ratio spike'},
+    ];
+    const moversWrap = document.getElementById('movers');
+    if (moversWrap){
+      MOVERS.forEach(m=>{
+        const card = document.createElement('a');
+        card.href = `/reports.html?q=${encodeURIComponent(m.ticker)}`;
+        card.className = 'card';
+        card.innerHTML = `<h3 style="margin:0 0 .25rem">${m.ticker}</h3><p class="muted" style="margin:0 0 .25rem">${m.change}</p><p class="muted" style="margin:0">${m.reason}</p>`;
+        moversWrap.appendChild(card);
+      });
+    }
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
