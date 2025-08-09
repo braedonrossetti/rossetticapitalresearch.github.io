@@ -50,49 +50,45 @@
       justify-content: center;
       gap: 8px;
       font-weight: 600;
+      position: relative;
     }
     .announce .offer-strong { font-weight: 800; color: #ffffff; }
-    .announce .offer-cta { font-weight: 600; color: var(--accent-1); }
+    .announce .offer-cta { font-weight: 600; color: var(--accent-1); text-decoration: none; border: 1px solid transparent; padding: 4px 10px; border-radius: 999px; }
+    .announce .offer-cta:hover { text-decoration: underline; }
+    .announce .close-annc {
+      position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+      background: transparent; border: none; color: #0d1d3d; font-weight: 900; cursor: pointer; line-height: 1; padding: 2px 6px; border-radius: 6px; opacity: .9;
+    }
 
     /* Navbar */
-    .nav-wrap {
-      background: var(--main-1);
-      box-shadow: 0 2px 12px rgba(0,0,0,.2);
-    }
+    .nav-wrap { background: var(--main-1); box-shadow: 0 2px 12px rgba(0,0,0,.2); }
     .navbar {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: auto 1fr auto; /* left group | center menu | right cluster */
-      align-items: center;
-      gap: 14px;
-      padding: 12px 16px;
-      color: var(--main-2);
+      max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: auto 1fr auto; /* left group | center menu | right cluster */
+      align-items: center; gap: 14px; padding: 12px 16px; color: var(--main-2);
     }
     .left-group { display: flex; align-items: center; gap: 14px; min-width: 0; }
-    .brand img { height: 68px; width: auto; } /* bigger logo */
+    .brand img { height: 60px; width: auto; } /* slightly smaller logo */
 
     .center-menu { display: flex; justify-content: center; gap: 16px; }
-    .center-menu a {
-      color: #e7edff; text-decoration: none; font-weight: 600; padding: 8px 12px; border-radius: var(--radius-sm); white-space: nowrap;
-    }
+    .center-menu a { color: #e7edff; text-decoration: none; font-weight: 600; padding: 8px 12px; border-radius: var(--radius-sm); white-space: nowrap; }
     .center-menu a:hover { background: rgba(255,255,255,.08); }
 
     .right-cluster { display: flex; justify-content: flex-end; align-items: center; gap: 10px; min-width: 0; }
 
     /* Search in navbar (left of center, next to logo) */
     .searchbox { position: relative; width: 100%; max-width: 340px; }
-    .searchbox input[type="search"] {
-      width: 100%; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.1); color: #fff; border-radius: 999px; padding: 10px 42px 10px 14px; outline: none; transition: background .2s, border-color .2s;
-    }
+    .searchbox input[type="search"] { width: 100%; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.1); color: #fff; border-radius: 999px; padding: 10px 42px 10px 14px; outline: none; transition: background .2s, border-color .2s; }
     .searchbox input::placeholder { color: #d9e2ffcc; }
     .searchbox input:focus { background: rgba(255,255,255,.15); border-color: #cfe0ff; }
     /* Icon becomes the Go button on the right */
-    .searchbox button.s-icon-btn {
-      position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
-      border: 0; background: transparent; padding: 6px; cursor: pointer;
-    }
+    .searchbox button.s-icon-btn { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); border: 0; background: transparent; padding: 6px; cursor: pointer; }
     .searchbox button.s-icon-btn img { height: 18px; width: 18px; opacity: .95; }
+
+    /* Secondary (hero-below) search */
+    .search-section { max-width: 900px; margin: 12px auto 0; padding: 0 16px; }
+    .search-panel { background:#fff; border:1px solid #e6ecff; box-shadow: var(--shadow); border-radius: var(--radius-lg); padding: 14px; }
+    .search-row { display:flex; gap:12px; align-items:center; }
+    .search-row .searchbox { max-width: none; }
 
     /* Autocomplete */
     .ac-list { position: absolute; left: 0; right: 0; top: calc(100% + 6px); background: #fff; color: var(--text-1); border-radius: var(--radius-md); box-shadow: var(--shadow); overflow: hidden; display: none; z-index: 1000; }
@@ -121,7 +117,7 @@
     /* Stacked report visuals */
     .hero-visual { background: var(--card); border-radius: var(--radius-xl); border: 1px solid #e6ecff; box-shadow: var(--shadow); padding: 24px; position: relative; min-height: 320px; overflow: visible; }
     .report-stack { position: relative; width: 100%; height: 100%; }
-    .report-stack img { position: absolute; width: 64%; max-width: 360px; height: auto; border-radius: 12px; border: 1px solid #eef3ff; box-shadow: 0 18px 40px rgba(13,29,61,.18); transform-origin: center; }
+    .report-stack img { position: absolute; width: 64%; max-width: 360px; height: auto; border-radius: 0; border: 1px solid #eef3ff; box-shadow: 0 18px 40px rgba(13,29,61,.18); transform-origin: center; }
     .report-1 { top: 18%; left: 14%; transform: rotate(-6deg); z-index: 1; }
     .report-2 { top: 8%; left: 26%; transform: rotate(2deg); z-index: 2; }
     .report-3 { top: 28%; left: 38%; transform: rotate(8deg); z-index: 3; }
@@ -158,15 +154,19 @@
       .hero { grid-template-columns: 1fr; }
       .hero-visual { min-height: 300px; }
       .report-stack img { width: 72%; }
+      .search-section { margin-top: 8px; }
     }
     @media (max-width: 860px) {
       .navbar { grid-template-columns: 1fr auto auto; }
       .center-menu { display: none; }
       .hamburger { display: inline-block; }
-      .brand img { height: 56px; }
+      .brand img { height: 52px; }
       .left-group { gap: 10px; }
     }
     @media (max-width: 520px) {
+      /* Mobile: announcement bar shows only CTA */
+      .announce .offer-strong { display: none; }
+      .announce .close-annc { right: 8px; }
       .right-cluster { gap: 6px; }
       .btn { padding: 8px 12px; }
       .searchbox { max-width: 220px; }
@@ -188,7 +188,8 @@
     <!-- Announcement Bar -->
     <div class="announce" role="region" aria-label="announcement" id="announceBar">
       <span class="offer-strong">SPECIAL OFFER: GET 1 MONTH OF RCR CORE FREE -</span>
-      <span class="offer-cta">SIGN UP TODAY »»</span>
+      <a class="offer-cta" href="/subscriptions.html">SIGN UP TODAY »</a>
+      <button class="close-annc" aria-label="Dismiss announcement" onclick="document.getElementById('announceBar').style.display='none'">×</button>
     </div>
 
     <!-- NAVBAR -->
@@ -196,7 +197,7 @@
       <div class="navbar">
         <div class="left-group">
           <div class="brand">
-            <img src="RCRLogo-v4.png" alt="Rossetti Capital Research logo" />
+            <img src="RCRlogo-v3.png" alt="Rossetti Capital Research logo" />
           </div>
           <!-- Search (left, next to logo) -->
           <form class="searchbox" role="search" aria-label="Ticker or company search" id="navSearchForm">
@@ -239,7 +240,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-card">
-      <h1>Turn your ideas into informed trades.</h1>
+      <h1>Don't just follow the market, beat it.</h1>
       <p>Instant, plain-English equity research built for retail investors. Search any ticker, scan 50+ fundamentals in our screener, and download concise weekly stock reports.</p>
       <div class="cta">
         <a class="btn btn-primary" href="/screener.html">Open Stock Screener</a>
@@ -252,6 +253,21 @@
         <img class="report-2" src="PSRsample1.png" alt="Sample Portfolio Summary Report" />
         <img class="report-3" src="WSRsample1.png" alt="Sample Weekly Summary Report" />
       </div>
+    </div>
+  </section>
+
+  <!-- Secondary Search under hero -->
+  <section class="search-section" aria-label="Search tickers or companies">
+    <div class="search-panel">
+      <form class="search-row" id="heroSearchForm" role="search">
+        <div class="searchbox" style="flex:1">
+          <input id="tickerSearchHero" type="search" placeholder="Search ticker or company" autocomplete="off" aria-autocomplete="list" aria-controls="acListHero" aria-expanded="false" />
+          <button class="s-icon-btn" type="submit" aria-label="Search">
+            <img src="search.png" alt="" />
+          </button>
+          <div class="ac-list" id="acListHero" role="listbox" aria-expanded="false"></div>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -467,7 +483,9 @@
       });
     }
 
+    // Setup both search bars
     setupAutocomplete('tickerSearch','acList','navSearchForm');
+    setupAutocomplete('tickerSearchHero','acListHero','heroSearchForm');
   </script>
 </body>
 </html>
