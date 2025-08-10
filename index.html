@@ -174,6 +174,7 @@
   </main>
 
   <script>
+    // --- Mobile menu toggle
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
     hamburger.addEventListener('click', () => {
@@ -187,19 +188,35 @@
       }
     });
 
-    const STOCKS = [
-      { t: 'AAPL', n: 'Apple Inc.' },
-      { t: 'MSFT', n: 'Microsoft Corporation' },
-      { t: 'GOOGL', n: 'Alphabet Inc. (Class A)' },
-      { t: 'AMZN', n: 'Amazon.com, Inc.' },
-      { t: 'NVDA', n: 'NVIDIA Corporation' },
-      { t: 'CPRX', n: 'Catalyst Pharmaceuticals, Inc.' },
-      { t: 'FSM', n: 'Fortuna Silver Mines Inc.' },
-      { t: 'INCY', n: 'Incyte Corporation' },
-      { t: 'GMAB', n: 'Genmab A/S' },
-    ];
+    // --- Load stocks from JSON ----------------------------------------------
+    let STOCKS = [];
+
+    async function loadStocks(){
+      const candidates = [
+        'stocklist.json',
+        'data/stocklist.json',
+        '/stocklist.json',
+        '/data/stocklist.json'
+      ];
+      for (const url of candidates){
+        try {
+          const res = await fetch(url, { cache: 'no-store' });
+          if(res.ok){
+            const raw = await res.json();
+            STOCKS = (Array.isArray(raw) ? raw : []).map(r => ({
+              t: r.t ?? r.ticker ?? r.symbol ?? r.Symbol ?? '',
+              n: r.n ?? r.name ?? r.company ?? r.Company ?? ''
+            })).filter(x => x.t && x.n);
+            return true;
+          }
+        } catch(e){ /* try next candidate */ }
+      }
+      console.warn('stocklist.json not found in expected locations');
+      return false;
+    }
 
     function normalize(s){ return s.toLowerCase().trim(); }
+
     function searchStocks(q){
       q = normalize(q);
       if(!q) return [];
@@ -207,6 +224,9 @@
       const contains = STOCKS.filter(x => !starts.includes(x) && (x.t.toLowerCase().includes(q) || x.n.toLowerCase().includes(q)));
       return [...starts, ...contains].slice(0, 5);
     }
+
+    function debounce(fn, ms){ let t; return (...a)=>{ clearTimeout(t); t = setTimeout(()=>fn(...a), ms); }; }
+
     function wireAutocomplete(formId, inputId, acId){
       const form = document.getElementById(formId);
       const input = document.getElementById(inputId);
@@ -216,7 +236,7 @@
         ac.classList.add('open');
         ac.innerHTML = results.map(r => `<button type=\"button\" data-t=\"${r.t}\"><span class=\"ticker\">${r.t}</span><span class=\"name\">${r.n}</span></button>`).join('');
       }
-      input.addEventListener('input', () => { render(searchStocks(input.value)); });
+      input.addEventListener('input', debounce(() => { render(searchStocks(input.value)); }, 120));
       input.addEventListener('focus', () => { if(input.value) render(searchStocks(input.value)); });
       document.addEventListener('click', (e) => { if(!form.contains(e.target)) { ac.classList.remove('open'); } });
       ac.addEventListener('click', (e) => {
@@ -234,8 +254,13 @@
         else { window.location.href = `search.html?q=${encodeURIComponent(q)}`; }
       });
     }
+
+    // Wire inputs now; data will populate when loaded
     wireAutocomplete('desktopSearch','qDesktop','acDesktop');
     wireAutocomplete('mobileSearch','qMobile','acMobile');
+
+    // Load dataset
+    loadStocks();
   </script>
 </body>
 </html>
