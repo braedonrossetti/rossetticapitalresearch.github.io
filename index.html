@@ -26,7 +26,10 @@
 
     /* --- Navbar ---------------------------------------------------------- */
     .site-header { position: sticky; top: 0; z-index: 1000; background: var(--nav-bg); color: var(--text); box-shadow: 0 1px 0 rgba(255,255,255,.06); }
-    .nav { height: 65px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; padding: 0 14px; font-family: var(--font); }
+    .nav { height: 67px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 0 14px; font-family: var(--font); }
+    /* Wider screen edge margins */
+    @media (min-width: 1280px) { .nav { padding: 0 32px; } }
+    @media (min-width: 1600px) { .nav { padding: 0 48px; } }
 
     /* Left cluster */
     .nav-left { display: flex; align-items: center; gap: 10px; }
@@ -36,23 +39,24 @@
     /* Search bar (desktop) */
     .searchbar { position: relative; width: clamp(220px, 30vw, 380px); }
     .searchbar input[type="search"] {
-      width: 100%; height: 36px; padding: 0 12px 0 36px; border-radius: 9999px;
-      background: var(--search-bg); border: 1px solid var(--search-border); color: var(--text);
-      outline: none; font-family: var(--font);
+      width: 100%; height: 38px; padding: 0 12px 0 36px; border-radius: 9999px;
+      background: var(--search-bg); border: 1px solid var(--search-border); color: #ffffff; /* lighter than bar */
+      outline: none; font-family: var(--font); font-size: 16px; /* slightly larger */
     }
-    .searchbar input::placeholder { color: var(--muted); }
-    .searchbar img.icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); height: 16px; width: 16px; opacity: .9; }
+    .searchbar input::placeholder { color: rgba(255,255,255,.86); }
+    .searchbar img.icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); height: 16px; width: 16px; opacity: .95; }
 
     /* Autocomplete */
-    .autocomplete { position: absolute; top: 40px; left: 0; right: 0; background: var(--nav-bg); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; box-shadow: var(--menu-shadow); display: none; max-height: 320px; overflow: auto; }
+    .autocomplete { position: absolute; top: 42px; left: 0; right: 0; background: var(--nav-bg); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; box-shadow: var(--menu-shadow); display: none; max-height: 320px; overflow: auto; }
     .autocomplete.open { display: block; }
     .autocomplete button { width: 100%; text-align: left; padding: 8px 12px; background: transparent; border: none; color: var(--text); font-family: var(--font); cursor: pointer; }
     .autocomplete button:hover { background: rgba(255,255,255,.08); }
     .autocomplete .ticker { font-weight: 700; margin-right: 6px; }
     .autocomplete .name { color: var(--muted); }
 
-    /* Center cluster */
-    .site-nav { display: flex; justify-content: center; }
+    /* Center cluster (ensures true centering between left and right) */
+    .site-nav { display: flex; justify-content: center; align-items: center; }
+    .site-nav { justify-self: center; }
     .site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 12px; }
     .site-nav a { color: var(--muted); text-decoration: none; padding: 8px 10px; border-radius: 8px; font-family: var(--font); }
     .site-nav a:hover { color: var(--text); background: rgba(255,255,255,.06); }
@@ -72,7 +76,7 @@
     .hamburger .bars::after { position: absolute; top: 6px; }
 
     /* Mobile menu panel */
-    .mobile-menu { display: none; position: absolute; left: 0; right: 0; top: 65px; background: var(--nav-bg); border-top: 1px solid rgba(255,255,255,.08); box-shadow: var(--menu-shadow); font-family: var(--font); }
+    .mobile-menu { display: none; position: absolute; left: 0; right: 0; top: 67px; background: var(--nav-bg); border-top: 1px solid rgba(255,255,255,.08); box-shadow: var(--menu-shadow); font-family: var(--font); }
     .mobile-menu.open { display: block; }
     .mobile-menu .mm-inner { padding: 10px; display: grid; gap: 8px; }
 
@@ -80,7 +84,7 @@
     .mm-search { position: relative; }
     .mm-search input[type="search"] {
       width: 100%; height: 40px; padding: 0 12px 0 36px; border-radius: 10px;
-      background: var(--search-bg); border: 1px solid var(--search-border); color: var(--text); outline: none;
+      background: var(--search-bg); border: 1px solid var(--search-border); color: #ffffff; outline: none; font-size: 16px;
     }
     .mm-search img.icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); height: 16px; width: 16px; }
     .mm-autocomplete { position: relative; }
@@ -89,14 +93,14 @@
     .mobile-menu ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
     .mobile-menu a, .mobile-menu button.linky { width: 100%; text-align: left; padding: 10px 12px; border-radius: 10px; color: var(--text); background: transparent; border: none; text-decoration: none; font: inherit; }
     .mobile-menu a:hover, .mobile-menu button.linky:hover { background: rgba(255,255,255,.06); }
-    .mobile-menu .full { background: transparent; color: var(--text); } /* no special styling inside hamburger per request */
+    .mobile-menu .full { background: transparent; color: var(--text); }
 
     @media (max-width: 900px) {
       .site-nav { display: none; }
-      .searchbar { display: none; } /* move search into hamburger */
+      .searchbar { display: none; }
       .hamburger { display: inline-flex; }
       .nav { grid-template-columns: auto 1fr auto; }
-      .btn-full { display: none; } /* remove from navbar on mobile */
+      .btn-full { display: none; }
     }
   </style>
 </head>
@@ -182,8 +186,6 @@
     });
 
     // --- Autocomplete data (placeholder) ---------------------------------
-    // TODO: replace with your dataset loaded from JSON/CSV.
-    // Example structure: [{ t: 'AAPL', n: 'Apple Inc.' }, ...]
     const STOCKS = [
       { t: 'AAPL', n: 'Apple Inc.' },
       { t: 'MSFT', n: 'Microsoft Corporation' },
@@ -201,10 +203,9 @@
     function searchStocks(q){
       q = normalize(q);
       if(!q) return [];
-      // Basic starts-with priority, then contains
       const starts = STOCKS.filter(x => x.t.toLowerCase().startsWith(q) || x.n.toLowerCase().startsWith(q));
       const contains = STOCKS.filter(x => !starts.includes(x) && (x.t.toLowerCase().includes(q) || x.n.toLowerCase().includes(q)));
-      return [...starts, ...contains].slice(0, 8);
+      return [...starts, ...contains].slice(0, 5); // max 5 results
     }
 
     function wireAutocomplete(formId, inputId, acId){
@@ -233,7 +234,6 @@
         e.preventDefault();
         const q = input.value.trim();
         if(!q) return;
-        // If exact ticker match, go straight to stock page; else go to a search results page
         const exact = STOCKS.find(x => x.t.toLowerCase() === q.toLowerCase());
         if(exact){ window.location.href = `stock.html?ticker=${encodeURIComponent(exact.t)}`; }
         else { window.location.href = `search.html?q=${encodeURIComponent(q)}`; }
