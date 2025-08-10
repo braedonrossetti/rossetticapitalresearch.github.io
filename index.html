@@ -10,9 +10,12 @@
       --nav-bg: #0d1d3d;
       --cta: #f3cf58;
       --text: #ffffff;
-      --muted: rgba(255,255,255,.75);
+      --muted: rgba(255,255,255,.78);
       --border: rgba(255,255,255,.25);
       --font: 'Segoe UI Variable Display', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      --search-bg: rgba(255,255,255,.12);
+      --search-border: rgba(255,255,255,.22);
+      --menu-shadow: 0 12px 24px rgba(0,0,0,.2);
     }
 
     /* --- Announcement Bar ------------------------------------------------ */
@@ -30,9 +33,23 @@
     .logo { display: inline-flex; align-items: center; gap: 8px; }
     .logo img { height: 28px; width: auto; display: block; }
 
-    .icon-btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; background: transparent; border: 1px solid var(--border); color: var(--text); border-radius: 9999px; cursor: pointer; text-decoration: none; font-family: var(--font); }
-    .icon-btn:hover { background: rgba(255,255,255,.06); }
-    .icon-btn img { height: 16px; width: 16px; display: block; }
+    /* Search bar (desktop) */
+    .searchbar { position: relative; width: clamp(220px, 30vw, 380px); }
+    .searchbar input[type="search"] {
+      width: 100%; height: 36px; padding: 0 12px 0 36px; border-radius: 9999px;
+      background: var(--search-bg); border: 1px solid var(--search-border); color: var(--text);
+      outline: none; font-family: var(--font);
+    }
+    .searchbar input::placeholder { color: var(--muted); }
+    .searchbar img.icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); height: 16px; width: 16px; opacity: .9; }
+
+    /* Autocomplete */
+    .autocomplete { position: absolute; top: 40px; left: 0; right: 0; background: var(--nav-bg); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; box-shadow: var(--menu-shadow); display: none; max-height: 320px; overflow: auto; }
+    .autocomplete.open { display: block; }
+    .autocomplete button { width: 100%; text-align: left; padding: 8px 12px; background: transparent; border: none; color: var(--text); font-family: var(--font); cursor: pointer; }
+    .autocomplete button:hover { background: rgba(255,255,255,.08); }
+    .autocomplete .ticker { font-weight: 700; margin-right: 6px; }
+    .autocomplete .name { color: var(--muted); }
 
     /* Center cluster */
     .site-nav { display: flex; justify-content: center; }
@@ -55,19 +72,31 @@
     .hamburger .bars::after { position: absolute; top: 6px; }
 
     /* Mobile menu panel */
-    .mobile-menu { display: none; position: absolute; left: 0; right: 0; top: 65px; background: var(--nav-bg); border-top: 1px solid rgba(255,255,255,.08); box-shadow: 0 12px 24px rgba(0,0,0,.2); font-family: var(--font); }
+    .mobile-menu { display: none; position: absolute; left: 0; right: 0; top: 65px; background: var(--nav-bg); border-top: 1px solid rgba(255,255,255,.08); box-shadow: var(--menu-shadow); font-family: var(--font); }
     .mobile-menu.open { display: block; }
-    .mobile-menu ul { list-style: none; margin: 0; padding: 8px; display: grid; gap: 6px; }
-    .mobile-menu a, .mobile-menu button.linky { width: 100%; text-align: left; padding: 10px 12px; border-radius: 10px; color: var(--text); background: transparent; border: 1px solid rgba(255,255,255,.08); text-decoration: none; font: inherit; }
+    .mobile-menu .mm-inner { padding: 10px; display: grid; gap: 8px; }
+
+    /* Mobile search bar inside menu */
+    .mm-search { position: relative; }
+    .mm-search input[type="search"] {
+      width: 100%; height: 40px; padding: 0 12px 0 36px; border-radius: 10px;
+      background: var(--search-bg); border: 1px solid var(--search-border); color: var(--text); outline: none;
+    }
+    .mm-search img.icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); height: 16px; width: 16px; }
+    .mm-autocomplete { position: relative; }
+    .mm-autocomplete .autocomplete { position: static; box-shadow: none; border-radius: 10px; }
+
+    .mobile-menu ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+    .mobile-menu a, .mobile-menu button.linky { width: 100%; text-align: left; padding: 10px 12px; border-radius: 10px; color: var(--text); background: transparent; border: none; text-decoration: none; font: inherit; }
     .mobile-menu a:hover, .mobile-menu button.linky:hover { background: rgba(255,255,255,.06); }
-    .mobile-menu .full { background: var(--cta); color: #0d1d3d; border-color: transparent; }
+    .mobile-menu .full { background: transparent; color: var(--text); } /* no special styling inside hamburger per request */
 
     @media (max-width: 900px) {
       .site-nav { display: none; }
-      .icon-btn.search { display: none; }
+      .searchbar { display: none; } /* move search into hamburger */
       .hamburger { display: inline-flex; }
       .nav { grid-template-columns: auto 1fr auto; }
-      .btn-full { display: none; }
+      .btn-full { display: none; } /* remove from navbar on mobile */
     }
   </style>
 </head>
@@ -86,10 +115,13 @@
         <a class="logo" href="index.html" aria-label="Rossetti Capital Research home">
           <img src="RCRLogo-v3.png" alt="Rossetti Capital Research" />
         </a>
-        <a class="icon-btn search" href="#" aria-label="Search">
-          <img src="search-v2.png" alt="" aria-hidden="true" />
-          <span>Search</span>
-        </a>
+        
+        <!-- Desktop search bar -->
+        <form class="searchbar" id="desktopSearch" role="search" autocomplete="off">
+          <img class="icon" src="search-v2.png" alt="" aria-hidden="true" />
+          <input type="search" id="qDesktop" placeholder="Search ticker or company" aria-label="Search ticker or company" />
+          <div class="autocomplete" id="acDesktop" aria-live="polite"></div>
+        </form>
       </div>
 
       <nav class="site-nav" aria-label="Main">
@@ -106,15 +138,26 @@
         <a class="btn btn-login" href="login.html">Log in</a>
       </div>
 
+      <!-- Mobile menu panel -->
       <div id="mobile-menu" class="mobile-menu" role="dialog" aria-label="Mobile menu">
-        <ul>
-          <li><button class="linky" type="button"><img src="search-v2.png" alt="" style="height:16px;width:16px;margin-right:8px;vertical-align:middle;">Search</button></li>
-          <li><a href="screener.html">Stock Screener</a></li>
-          <li><a href="portfolio.html">Portfolio Analysis</a></li>
-          <li><a href="weekly.html">Weekly Report</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a class="full" href="fullaccess.html">Full Access</a></li>
-        </ul>
+        <div class="mm-inner">
+          <!-- Search at top of dropdown -->
+          <form class="mm-search" id="mobileSearch" role="search" autocomplete="off">
+            <img class="icon" src="search-v2.png" alt="" aria-hidden="true" />
+            <input type="search" id="qMobile" placeholder="Search ticker or company" aria-label="Search ticker or company" />
+            <div class="mm-autocomplete">
+              <div class="autocomplete" id="acMobile" aria-live="polite"></div>
+            </div>
+          </form>
+
+          <ul>
+            <li><a href="screener.html">Stock Screener</a></li>
+            <li><a href="portfolio.html">Portfolio Analysis</a></li>
+            <li><a href="weekly.html">Weekly Report</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="fullaccess.html">Full Access</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </header>
@@ -124,6 +167,7 @@
   </main>
 
   <script>
+    // --- Mobile menu toggle
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
     hamburger.addEventListener('click', () => {
@@ -136,6 +180,68 @@
         hamburger.setAttribute('aria-expanded', 'false');
       }
     });
+
+    // --- Autocomplete data (placeholder) ---------------------------------
+    // TODO: replace with your dataset loaded from JSON/CSV.
+    // Example structure: [{ t: 'AAPL', n: 'Apple Inc.' }, ...]
+    const STOCKS = [
+      { t: 'AAPL', n: 'Apple Inc.' },
+      { t: 'MSFT', n: 'Microsoft Corporation' },
+      { t: 'GOOGL', n: 'Alphabet Inc. (Class A)' },
+      { t: 'AMZN', n: 'Amazon.com, Inc.' },
+      { t: 'NVDA', n: 'NVIDIA Corporation' },
+      { t: 'CPRX', n: 'Catalyst Pharmaceuticals, Inc.' },
+      { t: 'FSM', n: 'Fortuna Silver Mines Inc.' },
+      { t: 'INCY', n: 'Incyte Corporation' },
+      { t: 'GMAB', n: 'Genmab A/S' },
+    ];
+
+    function normalize(s){ return s.toLowerCase().trim(); }
+
+    function searchStocks(q){
+      q = normalize(q);
+      if(!q) return [];
+      // Basic starts-with priority, then contains
+      const starts = STOCKS.filter(x => x.t.toLowerCase().startsWith(q) || x.n.toLowerCase().startsWith(q));
+      const contains = STOCKS.filter(x => !starts.includes(x) && (x.t.toLowerCase().includes(q) || x.n.toLowerCase().includes(q)));
+      return [...starts, ...contains].slice(0, 8);
+    }
+
+    function wireAutocomplete(formId, inputId, acId){
+      const form = document.getElementById(formId);
+      const input = document.getElementById(inputId);
+      const ac = document.getElementById(acId);
+
+      function render(results){
+        if(!results.length){ ac.classList.remove('open'); ac.innerHTML = ''; return; }
+        ac.classList.add('open');
+        ac.innerHTML = results.map(r => `<button type="button" data-t="${r.t}"><span class="ticker">${r.t}</span><span class="name">${r.n}</span></button>`).join('');
+      }
+
+      input.addEventListener('input', () => { render(searchStocks(input.value)); });
+      input.addEventListener('focus', () => { if(input.value) render(searchStocks(input.value)); });
+      document.addEventListener('click', (e) => { if(!form.contains(e.target)) { ac.classList.remove('open'); } });
+
+      ac.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-t]');
+        if(!btn) return;
+        const t = btn.dataset.t;
+        window.location.href = `stock.html?ticker=${encodeURIComponent(t)}`;
+      });
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const q = input.value.trim();
+        if(!q) return;
+        // If exact ticker match, go straight to stock page; else go to a search results page
+        const exact = STOCKS.find(x => x.t.toLowerCase() === q.toLowerCase());
+        if(exact){ window.location.href = `stock.html?ticker=${encodeURIComponent(exact.t)}`; }
+        else { window.location.href = `search.html?q=${encodeURIComponent(q)}`; }
+      });
+    }
+
+    wireAutocomplete('desktopSearch','qDesktop','acDesktop');
+    wireAutocomplete('mobileSearch','qMobile','acMobile');
   </script>
 </body>
 </html>
