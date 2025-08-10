@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rossetti Capital Research</title>
+  <link rel="icon" href="favicon-v4.png" type="image/png">
   <style>
     html, body { margin: 0; }
     body { overflow-x: hidden; }
@@ -16,6 +17,8 @@
       --font: 'Segoe UI Variable Display', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       --search-bg: rgba(255,255,255,.12);
       --search-border: rgba(255,255,255,.22);
+      --search-text: rgba(255,255,255,.92);
+      --search-placeholder: rgba(255,255,255,.75);
       --menu-shadow: 0 12px 24px rgba(0,0,0,.2);
     }
 
@@ -43,10 +46,10 @@
     .searchbar { position: relative; width: clamp(240px, 30vw, 400px); }
     .searchbar input[type="search"] {
       width: 100%; height: 38px; padding: 0 12px 0 36px; border-radius: 9999px;
-      background: var(--search-bg); border: 1px solid var(--search-border); color: #ffffff;
+      background: var(--search-bg); border: 1px solid var(--search-border); color: var(--search-text);
       outline: none; font-family: var(--font); font-size: 16px;
     }
-    .searchbar input::placeholder { color: rgba(255,255,255,.86); }
+    .searchbar input::placeholder { color: var(--search-placeholder); }
     .searchbar img.icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); height: 16px; width: 16px; opacity: .95; }
 
     /* Autocomplete */
@@ -60,8 +63,8 @@
     /* Center cluster */
     .site-nav { display: flex; justify-content: center; align-items: center; justify-self: center; }
     .site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 16px; }
-    .site-nav a { color: var(--muted); text-decoration: none; padding: 9px 12px; border-radius: 8px; font-family: var(--font); font-weight: 550; }
-    .site-nav a:hover { color: var(--text); background: rgba(255,255,255,.06); }
+    .site-nav a { color: var(--text); text-decoration: none; padding: 9px 12px; border-radius: 8px; font-family: var(--font); font-weight: 550; }
+    .site-nav a:hover { background: rgba(255,255,255,.06); }
 
     /* Right cluster */
     .nav-right { display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
@@ -80,19 +83,20 @@
     /* Mobile menu panel */
     .mobile-menu { display: none; position: absolute; left: 0; right: 0; top: 68px; background: var(--nav-bg); border-top: 1px solid rgba(255,255,255,.08); box-shadow: var(--menu-shadow); font-family: var(--font); }
     .mobile-menu.open { display: block; }
-    .mobile-menu .mm-inner { padding: 10px; display: grid; gap: 14px; } /* increased gap for button spacing */
+    .mobile-menu .mm-inner { padding: 10px; display: grid; gap: 14px; }
 
     /* Mobile search bar */
     .mm-search { position: relative; }
     .mm-search input[type="search"] {
       width: 100%; height: 38px; padding: 0 12px 0 36px; border-radius: 9999px;
-      background: var(--search-bg); border: 1px solid var(--search-border); color: #ffffff; outline: none; font-size: 16px; font-family: var(--font);
+      background: var(--search-bg); border: 1px solid var(--search-border); color: var(--search-text); outline: none; font-size: 16px; font-family: var(--font);
     }
+    .mm-search input::placeholder { color: var(--search-placeholder); }
     .mm-search img.icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); height: 16px; width: 16px; opacity: .95; }
     .mm-autocomplete { position: relative; }
     .mm-autocomplete .autocomplete { position: static; box-shadow: none; border-radius: 10px; }
 
-    .mobile-menu ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; } /* increased gap between menu links */
+    .mobile-menu ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
     .mobile-menu a, .mobile-menu button.linky { width: 100%; text-align: left; padding: 10px 12px; border-radius: 10px; color: var(--text); background: transparent; border: none; text-decoration: none; font: inherit; }
     .mobile-menu a:hover, .mobile-menu button.linky:hover { background: rgba(255,255,255,.06); }
     .mobile-menu .full { background: transparent; color: var(--text); }
@@ -208,7 +212,7 @@
       function render(results){
         if(!results.length){ ac.classList.remove('open'); ac.innerHTML = ''; return; }
         ac.classList.add('open');
-        ac.innerHTML = results.map(r => `<button type="button" data-t="${r.t}"><span class="ticker">${r.t}</span><span class="name">${r.n}</span></button>`).join('');
+        ac.innerHTML = results.map(r => `<button type=\"button\" data-t=\"${r.t}\"><span class=\"ticker\">${r.t}</span><span class=\"name\">${r.n}</span></button>`).join('');
       }
       input.addEventListener('input', () => { render(searchStocks(input.value)); });
       input.addEventListener('focus', () => { if(input.value) render(searchStocks(input.value)); });
