@@ -7,7 +7,12 @@
   <link rel="icon" href="favicon-v4.png" type="image/png">
   <style>
     html, body { margin: 0; }
-    body { overflow-x: hidden; }
+    body { 
+      overflow-x: hidden; 
+      background: linear-gradient(145deg, #0d1d3d 0%, #142b5c 50%, #0d1d3d 100%);
+      background-attachment: fixed;
+      background-size: cover;
+    }
     :root {
       --nav-bg: #0d1d3d;
       --cta: #f3cf58;
@@ -111,11 +116,13 @@
   </style>
 </head>
 <body>
+  <!-- Announcement Bar -->
   <div class="announcement" role="region" aria-label="Site announcement">
     <span class="msg">SPECIAL OFFER: GET 1 MONTH OF RCR CORE FREE &mdash;</span>
     <a class="cta" href="fullaccess.html">SIGN UP NOW &gt;&gt;</a>
   </div>
 
+  <!-- Navbar -->
   <header class="site-header" role="banner">
     <div class="nav" aria-label="Primary navigation">
       <div class="nav-left">
@@ -188,7 +195,7 @@
       }
     });
 
-    // --- Load stocks from JSON ----------------------------------------------
+    // --- Load stocks from JSON
     let STOCKS = [];
 
     async function loadStocks(){
@@ -234,7 +241,7 @@
       function render(results){
         if(!results.length){ ac.classList.remove('open'); ac.innerHTML = ''; return; }
         ac.classList.add('open');
-        ac.innerHTML = results.map(r => `<button type=\"button\" data-t=\"${r.t}\"><span class=\"ticker\">${r.t}</span><span class=\"name\">${r.n}</span></button>`).join('');
+        ac.innerHTML = results.map(r => `<button type="button" data-t="${r.t}"><span class="ticker">${r.t}</span><span class="name">${r.n}</span></button>`).join('');
       }
       input.addEventListener('input', debounce(() => { render(searchStocks(input.value)); }, 120));
       input.addEventListener('focus', () => { if(input.value) render(searchStocks(input.value)); });
