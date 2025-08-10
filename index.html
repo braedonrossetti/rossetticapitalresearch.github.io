@@ -6,7 +6,7 @@
   <title>Rossetti Capital Research</title>
   <style>
     html, body { margin: 0; }
-    body { overflow-x: hidden; } /* prevent accidental horizontal scroll */
+    body { overflow-x: hidden; }
     :root {
       --nav-bg: #0d1d3d;
       --cta: #f3cf58;
@@ -19,8 +19,8 @@
       --menu-shadow: 0 12px 24px rgba(0,0,0,.2);
     }
 
-    /* --- Announcement Bar (aligned to navbar paddings, no overflow) ----- */
-    .announcement { background: #2e67d6; width: 100%; display: block; box-sizing: border-box; padding: 8px 14px; }
+    /* --- Announcement Bar ------------------------------------------------ */
+    .announcement { background: #2e67d6; width: 100%; display: flex; justify-content: center; align-items: center; box-sizing: border-box; padding: 8px 14px; text-align: center; }
     @media (min-width: 1280px) { .announcement { padding-left: 32px; padding-right: 32px; } }
     @media (min-width: 1600px) { .announcement { padding-left: 48px; padding-right: 48px; } }
     .announcement .msg, .announcement .cta { font-family: var(--font); font-size: clamp(13px, 2.3vw, 15px); line-height: 1.4; }
@@ -31,14 +31,13 @@
     /* --- Navbar ---------------------------------------------------------- */
     .site-header { position: sticky; top: 0; z-index: 1000; background: var(--nav-bg); color: var(--text); box-shadow: 0 1px 0 rgba(255,255,255,.06); }
     .nav { height: 68px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 0 14px; font-family: var(--font); box-sizing: border-box; }
-    /* Wider screen edge margins */
     @media (min-width: 1280px) { .nav { padding: 0 32px; } }
     @media (min-width: 1600px) { .nav { padding: 0 48px; } }
 
     /* Left cluster */
     .nav-left { display: flex; align-items: center; gap: 12px; }
     .logo { display: inline-flex; align-items: center; gap: 8px; }
-    .logo img { height: 30px; width: auto; display: block; } /* slightly larger */
+    .logo img { height: 30px; width: auto; display: block; }
 
     /* Search bar (desktop) */
     .searchbar { position: relative; width: clamp(240px, 30vw, 400px); }
@@ -58,9 +57,9 @@
     .autocomplete .ticker { font-weight: 700; margin-right: 6px; }
     .autocomplete .name { color: var(--muted); }
 
-    /* Center cluster (true centering) */
+    /* Center cluster */
     .site-nav { display: flex; justify-content: center; align-items: center; justify-self: center; }
-    .site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 16px; } /* slightly more spacing */
+    .site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 16px; }
     .site-nav a { color: var(--muted); text-decoration: none; padding: 9px 12px; border-radius: 8px; font-family: var(--font); font-weight: 550; }
     .site-nav a:hover { color: var(--text); background: rgba(255,255,255,.06); }
 
@@ -81,9 +80,9 @@
     /* Mobile menu panel */
     .mobile-menu { display: none; position: absolute; left: 0; right: 0; top: 68px; background: var(--nav-bg); border-top: 1px solid rgba(255,255,255,.08); box-shadow: var(--menu-shadow); font-family: var(--font); }
     .mobile-menu.open { display: block; }
-    .mobile-menu .mm-inner { padding: 10px; display: grid; gap: 8px; }
+    .mobile-menu .mm-inner { padding: 10px; display: grid; gap: 14px; } /* increased gap for button spacing */
 
-    /* Mobile search bar styled to match desktop */
+    /* Mobile search bar */
     .mm-search { position: relative; }
     .mm-search input[type="search"] {
       width: 100%; height: 38px; padding: 0 12px 0 36px; border-radius: 9999px;
@@ -93,7 +92,7 @@
     .mm-autocomplete { position: relative; }
     .mm-autocomplete .autocomplete { position: static; box-shadow: none; border-radius: 10px; }
 
-    .mobile-menu ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+    .mobile-menu ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; } /* increased gap between menu links */
     .mobile-menu a, .mobile-menu button.linky { width: 100%; text-align: left; padding: 10px 12px; border-radius: 10px; color: var(--text); background: transparent; border: none; text-decoration: none; font: inherit; }
     .mobile-menu a:hover, .mobile-menu button.linky:hover { background: rgba(255,255,255,.06); }
     .mobile-menu .full { background: transparent; color: var(--text); }
@@ -122,8 +121,6 @@
         <a class="logo" href="index.html" aria-label="Rossetti Capital Research home">
           <img src="RCRLogo-v3.png" alt="Rossetti Capital Research" />
         </a>
-        
-        <!-- Desktop search bar -->
         <form class="searchbar" id="desktopSearch" role="search" autocomplete="off">
           <img class="icon" src="search-v2.png" alt="" aria-hidden="true" />
           <input type="search" id="qDesktop" placeholder="Search ticker or company" aria-label="Search ticker or company" />
@@ -145,10 +142,8 @@
         <a class="btn btn-login" href="login.html">Log in</a>
       </div>
 
-      <!-- Mobile menu panel -->
       <div id="mobile-menu" class="mobile-menu" role="dialog" aria-label="Mobile menu">
         <div class="mm-inner">
-          <!-- Search at top of dropdown -->
           <form class="mm-search" id="mobileSearch" role="search" autocomplete="off">
             <img class="icon" src="search-v2.png" alt="" aria-hidden="true" />
             <input type="search" id="qMobile" placeholder="Search ticker or company" aria-label="Search ticker or company" />
@@ -156,7 +151,6 @@
               <div class="autocomplete" id="acMobile" aria-live="polite"></div>
             </div>
           </form>
-
           <ul>
             <li><a href="screener.html">Stock Screener</a></li>
             <li><a href="portfolio.html">Portfolio Analysis</a></li>
@@ -174,7 +168,6 @@
   </main>
 
   <script>
-    // --- Mobile menu toggle
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
     hamburger.addEventListener('click', () => {
@@ -188,7 +181,6 @@
       }
     });
 
-    // --- Autocomplete data (placeholder) ---------------------------------
     const STOCKS = [
       { t: 'AAPL', n: 'Apple Inc.' },
       { t: 'MSFT', n: 'Microsoft Corporation' },
@@ -202,37 +194,31 @@
     ];
 
     function normalize(s){ return s.toLowerCase().trim(); }
-
     function searchStocks(q){
       q = normalize(q);
       if(!q) return [];
       const starts = STOCKS.filter(x => x.t.toLowerCase().startsWith(q) || x.n.toLowerCase().startsWith(q));
       const contains = STOCKS.filter(x => !starts.includes(x) && (x.t.toLowerCase().includes(q) || x.n.toLowerCase().includes(q)));
-      return [...starts, ...contains].slice(0, 5); // max 5 results
+      return [...starts, ...contains].slice(0, 5);
     }
-
     function wireAutocomplete(formId, inputId, acId){
       const form = document.getElementById(formId);
       const input = document.getElementById(inputId);
       const ac = document.getElementById(acId);
-
       function render(results){
         if(!results.length){ ac.classList.remove('open'); ac.innerHTML = ''; return; }
         ac.classList.add('open');
         ac.innerHTML = results.map(r => `<button type="button" data-t="${r.t}"><span class="ticker">${r.t}</span><span class="name">${r.n}</span></button>`).join('');
       }
-
       input.addEventListener('input', () => { render(searchStocks(input.value)); });
       input.addEventListener('focus', () => { if(input.value) render(searchStocks(input.value)); });
       document.addEventListener('click', (e) => { if(!form.contains(e.target)) { ac.classList.remove('open'); } });
-
       ac.addEventListener('click', (e) => {
         const btn = e.target.closest('button[data-t]');
         if(!btn) return;
         const t = btn.dataset.t;
         window.location.href = `stock.html?ticker=${encodeURIComponent(t)}`;
       });
-
       form.addEventListener('submit', (e) => {
         e.preventDefault();
         const q = input.value.trim();
@@ -242,7 +228,6 @@
         else { window.location.href = `search.html?q=${encodeURIComponent(q)}`; }
       });
     }
-
     wireAutocomplete('desktopSearch','qDesktop','acDesktop');
     wireAutocomplete('mobileSearch','qMobile','acMobile');
   </script>
